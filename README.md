@@ -2,15 +2,17 @@
 
 These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The Complete Python pro Bootcamp"](https://www.udemy.com/course/100-days-of-code) course on Udemy. (Latest projects are added to the top of the list.)
 
+## Table of Contents
+
 - [Beginner](#beginner)
   - [Day 1 - Working with Variables in Python to Manage Data](#day-1---working-with-variables-in-python-to-manage-data)
 - [Other](#other)
   - [Tools and Technologies Used](#tools-and-technologies-used)
   - [Author](#author)
 
-## Beginner
+# Beginner
 
-### Day 1 - Working with Variables in Python to Manage Data
+## Day 1 - Working with Variables in Python to Manage Data
 
 ### Project requirements:
 
@@ -20,15 +22,16 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 4. Combine the name of their city and pet and show them their band name.
 5. Make sure the input cursor shows on a new line:
 
-### Code:
+### Code & Potential Improvements:
 
 - Solution URL: [Day 1 - Band Name Generator](./beginner/day1_band_name_generator.py)
+- I used `while True:` and `if` statements to check whether an empty string had been entered for the city and pet names and if so to request the input again from the user.
 
 # Other
 
 ## Tools and Technologies Used
 
-- Python3
+- Python
 - PyCharm
 
 ## Author
