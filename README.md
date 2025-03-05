@@ -7,13 +7,28 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Beginner](#beginner)
-  - [Day 1 - Working with Variables in Python to Manage Data](#day-1---working-with-variables-in-python-to-manage-data)
   - [Day 2 - Understanding Data Types and How to Manipulate Strings](#day-2---understanding-data-types-and-how-to-manipulate-strings)
+  - [Day 1 - Working with Variables in Python to Manage Data](#day-1---working-with-variables-in-python-to-manage-data)
 - [Other](#other)
   - [Tools and Technologies Used](#tools-and-technologies-used)
   - [Author](#author)
 
 # Beginner
+
+## Day 3 - Control Flow and Logical Operators
+
+### Project requirements:
+
+- Build a "Chose your own adventure game".
+- Use the [flow chart](https://app.diagrams.net/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Treasure%20Island%20Conditional.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1oDe4ehjWZipYRsVfeAx2HyB7LCQ8_Fvi%26export%3Ddownload#%7B%22pageId%22%3A%22C5RBs43oDa-KdzZeNtuy%22%7D) linked to create the game logic for the adventure game.
+
+  <img src="./treasure_island_conditional.jpg" width="500">
+
+### Code & Potential Improvements:
+
+- Solution URL: [Day 3 - Treasure Island](./beginner/day3_treasure_island.py)
+- I used `if / else` statements to select the user's choice.
+- I used a dictionary to hold the ending outcomes of which door the user selected at the end of the adventure game.
 
 ## Day 2 - Understanding Data Types and How to Manipulate Strings
 
@@ -36,6 +51,10 @@ Example:
 - Solution URL: [Day 2 - Tip Calculator](./beginner/day2_tip_calculator.py)
 - I used `while True` and `if` statements to check whether the bill and the number of people splitting the bill are numbers > 0 and if not to request the input again from the user.
 - I used `while True` and `if tip not in [10, 12, 15]:` to check whether the tip amount was 10, 12 or 15%.
+- To get the output to always be to 2 decimal places:
+  ```python
+  print(f"Each person should pay: ${payment_per_person:.2f}")
+  ```
 
 ## Day 1 - Working with Variables in Python to Manage Data
 
