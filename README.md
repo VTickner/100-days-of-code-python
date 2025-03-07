@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Beginner](#beginner)
+  - [Day 5 - Python Loops](#day-5---python-loops)
   - [Day 4 - Randomisation and Python Lists](#day-4---randomisation-and-python-lists)
   - [Day 3 - Control Flow and Logical Operators](#day-3---control-flow-and-logical-operators)
   - [Day 2 - Understanding Data Types and How to Manipulate Strings](#day-2---understanding-data-types-and-how-to-manipulate-strings)
@@ -16,6 +17,25 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
   - [Author](#author)
 
 # Beginner
+
+## Day 5 - Python Loops
+
+### Project requirements
+
+The program will ask:
+
+- How many letters would you like in your password?
+- How many numbers would you like?
+- How many symbols would you like?
+
+The objective is to take the inputs from the user to these questions and then generate a random password, with the letters, numbers and symbols mixed up in the password.
+
+### Code & Potential Improvements:
+
+- Solution URL: [Day 5 - Password Generator](./beginner/day5_password_generator.py)
+- I defined a function `get_input_quantity(password_question)` to obtain the answers to the questions posed to the user. This function uses `while True`, along with `try / except ValueError` to check the inputs to the user questions are valid numbers.
+- I defined a function `generate_password_section(quantity, password_section, password)` to obtain the appropriate amount of letters, numbers and symbols as requested by the user. Using `random.choice(password_section)` to randomly pick an item from the appropriate list.
+- Once the password is generated,`random.shuffle()` is used to mix up the letters, numbers and symbols in the password.
 
 ## Day 4 - Randomisation and Python Lists
 
@@ -27,7 +47,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 
 - Solution URL: [Day 4 - Rock Paper Scissors](./beginner/day4_rock_paper_scissors.py)
 - I used a list to hold the ascii art variables to allow selection of rock, paper, scissors choices.
-- I used `while True` and `if user_choice not in [0, 1, 2]` to check whether the user's choice was 0 (rock), 1 (paper), 2 (scissors).
+- I used `while True`, along with `try / except ValueError` and `if user_choice not in [0, 1, 2]` to check whether the user's choice was 0 (rock), 1 (paper), 2 (scissors).
 - `import random` with `computer_choice = random.randint(0,2)` was used to generate a random choice for the computer.
 - I used `if / elif` statements to compare the user and computer's choices to see who won the game.
 
