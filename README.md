@@ -7,6 +7,8 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Beginner](#beginner)
+  - [Day 4 - Randomisation and Python Lists](#day-4---randomisation-and-python-lists)
+  - [Day 3 - Control Flow and Logical Operators](#day-3---control-flow-and-logical-operators)
   - [Day 2 - Understanding Data Types and How to Manipulate Strings](#day-2---understanding-data-types-and-how-to-manipulate-strings)
   - [Day 1 - Working with Variables in Python to Manage Data](#day-1---working-with-variables-in-python-to-manage-data)
 - [Other](#other)
@@ -14,6 +16,20 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
   - [Author](#author)
 
 # Beginner
+
+## Day 4 - Randomisation and Python Lists
+
+### Project requirements
+
+- Build a Rock Paper Scissors game.
+
+### Code & Potential Improvements:
+
+- Solution URL: [Day 4 - Rock Paper Scissors](./beginner/day4_rock_paper_scissors.py)
+- I used a list to hold the ascii art variables to allow selection of rock, paper, scissors choices.
+- I used `while True` and `if user_choice not in [0, 1, 2]` to check whether the user's choice was 0 (rock), 1 (paper), 2 (scissors).
+- `import random` with `computer_choice = random.randint(0,2)` was used to generate a random choice for the computer.
+- I used `if / elif` statements to compare the user and computer's choices to see who won the game.
 
 ## Day 3 - Control Flow and Logical Operators
 
@@ -50,7 +66,7 @@ Example:
 
 - Solution URL: [Day 2 - Tip Calculator](./beginner/day2_tip_calculator.py)
 - I used `while True` and `if` statements to check whether the bill and the number of people splitting the bill are numbers > 0 and if not to request the input again from the user.
-- I used `while True` and `if tip not in [10, 12, 15]:` to check whether the tip amount was 10, 12 or 15%.
+- I used `while True` and `if tip not in [10, 12, 15]` to check whether the tip amount was 10, 12 or 15%.
 - To get the output to always be to 2 decimal places:
   ```python
   print(f"Each person should pay: ${payment_per_person:.2f}")
