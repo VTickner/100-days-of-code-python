@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Beginner](#beginner)
+  - [Day 6 - Day 6 - Python Functions & Karel](#day-6---python-functions--karel)
   - [Day 5 - Python Loops](#day-5---python-loops)
   - [Day 4 - Randomisation and Python Lists](#day-4---randomisation-and-python-lists)
   - [Day 3 - Control Flow and Logical Operators](#day-3---control-flow-and-logical-operators)
@@ -17,6 +18,20 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
   - [Author](#author)
 
 # Beginner
+
+## Day 6 - Python Functions & Karel
+
+### Project requirements
+
+[Reeborg](https://reeborg.ca/reeborg.html?lang=en&mode=python&menu=worlds%2Fmenus%2Freeborg_intro_en.json&name=Maze&url=worlds%2Ftutorial_en%2Fmaze1.json) was exploring a dark maze and the battery in its flashlight ran out.
+
+Write a program using an if/elif/else statement so Reeborg can find the exit. The secret is to have Reeborg follow along the right edge of the maze, turning right if it can, going straight ahead if it can’t turn right, or turning left as a last resort.
+
+### Code & Potential Improvements:
+
+- Solution URL: [Day 6 - Escaping The Maze](./beginner/day6_escaping_the_maze.txt)
+- As there was no `turn_right()` function, I defined one, using the `turn_left()` function.
+- Used the functions `at_goal()`, `right_is_clear()` and `front_is_clear()` to detect where it is possible for Reeborg to move to.
 
 ## Day 5 - Python Loops
 
