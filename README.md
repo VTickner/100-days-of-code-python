@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Beginner](#beginner)
+  - [Day 7 - Hangman](#day-7---hangman)
   - [Day 6 - Day 6 - Python Functions & Karel](#day-6---python-functions--karel)
   - [Day 5 - Python Loops](#day-5---python-loops)
   - [Day 4 - Randomisation and Python Lists](#day-4---randomisation-and-python-lists)
@@ -18,6 +19,41 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
   - [Author](#author)
 
 # Beginner
+
+## Day 7 - Hangman
+
+### Project requirements
+
+- Create a flowchart showing how the hangman game works.
+- Build a Hangman game:
+  - Print the logo from `hangman_art.py`.
+  - Randomly choose a word from the `word_list` (from `hangman_words.py`) and assign it to a variable called `chosen_word`.
+  - Ask the user to guess a letter and assign their answer to a variable called `guess`.
+  - Check if the letter the user guessed `guess` is one of the letters in the `chosen_word`.
+  - Create an empty String called `placeholder`.
+    - For each letter in the `chosen_word`, add a \_ to placeholder so each `\_ represents a letter to guess.
+  - Create an empty string called "display".
+    - Loop through each letter in the chosen_word. If the letter at that position matches guess then reveal that letter in the display at that position.
+  - Use a while loop to let the user guess again.
+    - The loop should only stop once the user has guessed all the letters in the `chosen_word` and no \_ left.
+    - The for loop is to be updated so that previous guesses are added to the `display` string and the previous correct letters will also be printed out.
+    - Tell the user they've won.
+  - Create a variable called `lives` to keep track of the number of lives left - initialise with 6 lives.
+  - If guess is not a letter in the chosen_word, then reduce lives by 1.
+    - If lives goes down to 0 then the game should end, and it should print "You lose."
+  - If the user has entered a letter they've already guessed, print the letter and let them know. User does not lose a life.
+  - Print the ASCII art from the list `stages` (from `hangman_words.py`) that corresponds to the current number of `lives` the user has remaining.
+  - If the letter is not in the chosen_word, print out the letter and let them know it's not in the word.
+  - Tell the user how many lives they have left.
+  - Tell the user the correct word they were trying to guess.
+
+### Code & Potential Improvements:
+
+Flowchart to show how the logic of hangman will work:
+![Hangman Flowchart](./Hangman_flowchart.jpg)
+
+- Solution URL: [Day 7 - Hangman](./beginner/day7_hangman.py)
+- Incorrect guesses that have already been previously guessed do not lose another life. This is done by adding all incorrect guesses to `incorrect_letters` and checking guesses against incorrect letters to see whether the user loses a life or not.
 
 ## Day 6 - Python Functions & Karel
 
