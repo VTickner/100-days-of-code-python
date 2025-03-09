@@ -50,13 +50,13 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ### Code & Potential Improvements:
 
 Flowchart to show how the logic of hangman will work:
-![Hangman Flowchart](./Hangman_flowchart_v2.jpg)
+![Hangman Flowchart](./beginner/Hangman_flowchart_v2.jpg)
 
 - Solution URL: [Day 7 - Hangman](./beginner/day7_hangman.py)
 - Incorrect guesses that have already been previously guessed do not lose another life. This is done by adding all incorrect guesses to `incorrect_letters` and checking guesses against incorrect letters to see whether the user loses a life or not.
 - Refactored to make more concise and improve readability.
 - Added check on user input to make sure a single letter was entered.
-- Updated flowchart to match changes made to program. [Click here for the original flowchart](./Hangman_flowchart.jpg).
+- Updated flowchart to match changes made to program. [Click here for the original flowchart](./beginner/Hangman_flowchart.jpg).
 
 ## Day 6 - Python Functions & Karel
 
@@ -112,7 +112,7 @@ The objective is to take the inputs from the user to these questions and then ge
 - Build a "Chose your own adventure game".
 - Use the [flow chart](https://app.diagrams.net/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Treasure%20Island%20Conditional.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1oDe4ehjWZipYRsVfeAx2HyB7LCQ8_Fvi%26export%3Ddownload#%7B%22pageId%22%3A%22C5RBs43oDa-KdzZeNtuy%22%7D) linked to create the game logic for the adventure game.
 
-  <img src="./treasure_island_conditional.jpg" width="500">
+  <img src="./beginner/treasure_island_conditional.jpg" width="500">
 
 ### Code & Potential Improvements:
 
