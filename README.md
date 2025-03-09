@@ -8,7 +8,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 
 - [Beginner](#beginner)
   - [Day 7 - Hangman](#day-7---hangman)
-  - [Day 6 - Day 6 - Python Functions & Karel](#day-6---python-functions--karel)
+  - [Day 6 - Python Functions & Karel](#day-6---python-functions--karel)
   - [Day 5 - Python Loops](#day-5---python-loops)
   - [Day 4 - Randomisation and Python Lists](#day-4---randomisation-and-python-lists)
   - [Day 3 - Control Flow and Logical Operators](#day-3---control-flow-and-logical-operators)
@@ -54,6 +54,7 @@ Flowchart to show how the logic of hangman will work:
 
 - Solution URL: [Day 7 - Hangman](./beginner/day7_hangman.py)
 - Incorrect guesses that have already been previously guessed do not lose another life. This is done by adding all incorrect guesses to `incorrect_letters` and checking guesses against incorrect letters to see whether the user loses a life or not.
+- Refactored to make more concise and improve readability.
 
 ## Day 6 - Python Functions & Karel
 
