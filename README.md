@@ -50,11 +50,13 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ### Code & Potential Improvements:
 
 Flowchart to show how the logic of hangman will work:
-![Hangman Flowchart](./Hangman_flowchart.jpg)
+![Hangman Flowchart](./Hangman_flowchart_v2.jpg)
 
 - Solution URL: [Day 7 - Hangman](./beginner/day7_hangman.py)
 - Incorrect guesses that have already been previously guessed do not lose another life. This is done by adding all incorrect guesses to `incorrect_letters` and checking guesses against incorrect letters to see whether the user loses a life or not.
 - Refactored to make more concise and improve readability.
+- Added check on user input to make sure a single letter was entered.
+- Updated flowchart to match changes made to program. [Click here for the original flowchart](./Hangman_flowchart.jpg).
 
 ## Day 6 - Python Functions & Karel
 

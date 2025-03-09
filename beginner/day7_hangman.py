@@ -21,6 +21,10 @@ while not game_over:
     print(f"**************************** {lives}/6 LIVES LEFT ****************************")
     guess = input("Guess a letter: ").lower()
 
+    if len(guess) != 1 or not guess.isalpha():
+        print("Invalid input. Please enter a single letter.")
+        continue  # skip rest of loop so no lives are lost for incorrect input
+
     if guess in correct_letters or guess in incorrect_letters:
         print(f"You've already guessed {guess}")
         continue # skip rest of loop so no lives are lost
