@@ -23,7 +23,29 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 
 ## Day 8 - Function Parameters & Caesar Cipher
 
-TBA
+### Project requirements
+
+- Create a function called `encrypt()` that takes `original_text` and `shift_amount` as two inputs.
+  - The function should shift each letter of the `original_text` forwards in the alphabet by the `shift_amount` and print the encrypted text.
+- Call the `encrypt()` function and pass in the user inputs. Test the code and encrypt a message.
+- Fix the code so that it wraps around to the start of the alphabet if the letter is shifted past z.
+
+- Create a function called `decrypt()` that takes `original_text` and `shift_amount` as inputs.
+  - The function should shift each letter of the `original_text` **backwards** in the alphabet by the `shift_amount` and print the decrypted text.
+
+As the `encrypt()` and `decrypt()` functions are so similar:
+
+- Combine them into one function called `caesar()`.
+  - Use the value of the user chosen `direction` variable to determine which functionality to use.
+- Call the caesar function instead of `encrypt()`/`decrypt()` and pass in all three variables `direction`/`text`/`shift`.
+
+- Import and print the logo from `caesar_art.py` when the program starts.
+- Deal with if the user enters a number/symbol/space.
+- Add the ability to restart the cipher program again
+
+### Code & Potential Improvements:
+
+- Solution URL: [Day 8 - Caesar Cipher](./beginner/day8_caesar_cipher.py)
 
 ## Day 7 - Hangman
 
@@ -54,7 +76,7 @@ TBA
 
 ### Code & Potential Improvements:
 
-Flowchart to show how the logic of the Hangman game:
+Flowchart to show the logic of the Hangman game:
 ![Hangman Flowchart](./beginner/hangman_flowchart_v2.jpg)
 
 - Solution URL: [Day 7 - Hangman](./beginner/day7_hangman.py)
