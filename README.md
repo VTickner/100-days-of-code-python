@@ -26,7 +26,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 
 - Build a blind auction program:
   - Use the flowchart to guide the creation of the blind auction program:
-    ![Secret Auction Flowchart](./beginner/silent_auction_flowchart.jpg)
+    ![Secret Auction Flowchart](./beginner/secret_auction_flowchart.jpg)
   - Ask the user for input: name and bid.
   - Save the data into a dictionary.
   - Check whether new bids need to be entered.
