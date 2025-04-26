@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Beginner](#beginner)
+  - [Day 9 - Dictionaries, Nesting and the Secret Auction](#day-9---dictionaries-nesting-and-the-secret-auction)
   - [Day 8 - Function Parameters & Caesar Cipher](#day-8---function-parameters--caesar-cipher)
   - [Day 7 - Hangman](#day-7---hangman)
   - [Day 6 - Python Functions & Karel](#day-6---python-functions--karel)
@@ -20,6 +21,23 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
   - [Author](#author)
 
 # Beginner
+
+## Day 9 - Dictionaries, Nesting and the Secret Auction
+
+- Build a blind auction program:
+  - Use the flowchart to guide the creation of the blind auction program:
+    ![Secret Auction Flowchart](./beginner/silent_auction_flowchart.jpg)
+  - Ask the user for input: name and bid.
+  - Save the data into a dictionary.
+  - Check whether new bids need to be entered.
+  - Compare the bids in the dictionary.
+
+### Code & Potential Improvements:
+
+- Solution URL: [Day 9 - Secret Auction](./beginner/day9_secret_auction.py)
+- Used `while True`, along with `try / except ValueError` to check the input for the bids are valid numbers.
+- If there are other bids, `print("\n" * 20)` was used to create some vertical space for the next bidder to not see the previous bid on the screen.
+- Formatted the output of the winning bid to 2dp to keep it consistent with how currency is written: `${max_bid:.2f}`.
 
 ## Day 8 - Function Parameters & Caesar Cipher
 
@@ -46,6 +64,7 @@ As the `encrypt()` and `decrypt()` functions are so similar:
 ### Code & Potential Improvements:
 
 - Solution URL: [Day 8 - Caesar Cipher](./beginner/day8_caesar_cipher.py)
+- When calling `caesar()` I ensured it was very clear what variables belonged to which parameters by using named arguments: `caesar(original_text=text, shift_amount=shift, encode_or_decode=direction)`. This makes the function call more readable and avoids confusion, especially when a function has multiple parameters.
 
 ## Day 7 - Hangman
 
