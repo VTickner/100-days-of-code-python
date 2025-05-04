@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Beginner](#beginner)
+  - []()
   - [Day 9 - Dictionaries, Nesting and the Secret Auction](#day-9---dictionaries-nesting-and-the-secret-auction)
   - [Day 8 - Function Parameters & Caesar Cipher](#day-8---function-parameters--caesar-cipher)
   - [Day 7 - Hangman](#day-7---hangman)
@@ -21,6 +22,29 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
   - [Author](#author)
 
 # Beginner
+
+## Day 10 - Functions with Outputs
+
+- Build a calculator program:
+  - Use functions to to calculate add, subtract, multiply and divide.
+  - Have a dictionary store keys for +, -, \*, / and values as the corresponding functions.
+  - Use the dictionary to perform the calculations.
+  - Program asks the user to type the first number.
+  - Program asks the user to type a mathematical operator (a choice of `+`, `-`, `*` or `/`)
+  - Program asks the user to type the second number.
+  - Program works out the result based on the chosen mathematical operator.
+  - Program asks if the user wants to continue working with the previous result.
+  - If yes, program loops to use the previous result as the first number and then repeats the calculation process.
+  - If no, program asks the user for the fist number again and wipes all memory of previous calculations.
+  - Add the logo from `calculator_art.py`.
+
+### Code & Potential Improvements:
+
+- Solution URL: [Day 10 - Calculator](./beginner/day10_calculator.py)
+- Added input checking:
+  - `get_number()` uses `while True`, along with `try / except ValueError` to ensure only numbers have been entered.
+  - `get_operation()` uses `while True` to ensure only valid calculator operators have been entered.
+  - `get_continue_choice()` uses `while True`to ensure either `y` or `n` has been entered.
 
 ## Day 9 - Dictionaries, Nesting and the Secret Auction
 
