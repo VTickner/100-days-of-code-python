@@ -7,7 +7,8 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Beginner](#beginner)
-  - []()
+  - [Day 11 - The Blackjack Capstone Project](#day-11---the-blackjack-capstone-project)
+  - [Day 10 - Functions with Outputs](#day-10---functions-with-outputs)
   - [Day 9 - Dictionaries, Nesting and the Secret Auction](#day-9---dictionaries-nesting-and-the-secret-auction)
   - [Day 8 - Function Parameters & Caesar Cipher](#day-8---function-parameters--caesar-cipher)
   - [Day 7 - Hangman](#day-7---hangman)
@@ -22,6 +23,39 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
   - [Author](#author)
 
 # Beginner
+
+## Day 11 - The Blackjack Capstone Project
+
+### Blackjack Game House Rules
+
+- The deck is unlimited in size.
+- There are no jokers.
+- The Jack/Queen/King all count as 10.
+- The Ace can count as 11 or 1.
+- Use the following list as the deck of cards:
+  `cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]`
+- The cards in the list have equal probability of being drawn.
+- Cards are not removed from the deck as they are drawn.
+- The computer is the dealer.
+
+### Code & Potential Improvements:
+
+I created this flowchart to show the logic of the Blackjack game prior to coding the game:
+
+![Blackjack Flowchart](./beginner//blackjack_flowchart.jpg)
+
+- Solution URL: [Day 11 - Blackjack](./beginner/day11_blackjack.py)
+- Added input checking for player input - `get_choice(prompt)`
+- Split the code up into different functions to deal with the different tasks in the game:
+  - `change_ace_score(hand)`
+  - `show_final_cards(player, player_score, dealer, dealer_score)`
+  - `ust(hand, player, player_score, dealer, dealer_score)`
+  - `player_turn(player, dealer)`
+  - `dealer_turn(player, player_score, dealer)`
+  - `compare_scores(player, player_score, dealer, dealer_score)`
+  - `start_game()`
+  - `play_blackjack()`
+- Need to refactor to simplify code and also try to reduce the amount of parameters in the functions.
 
 ## Day 10 - Functions with Outputs
 
