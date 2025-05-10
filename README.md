@@ -55,7 +55,21 @@ I created this flowchart to show the logic of the Blackjack game prior to coding
   - `compare_scores(player, player_score, dealer, dealer_score)`
   - `start_game()`
   - `play_blackjack()`
-- Need to refactor to simplify code and also try to reduce the amount of parameters in the functions.
+- Refactored to:
+  - Simplify the code and make it clearer to read.
+  - Renamed variables and functions for better clarity e.g. `cards` changed to `card_values`.
+  - Reduced the number of parameters in functions (most now have two or fewer). This was done by calculating values like `player_score` and `dealer_score` inside the function instead.
+  - Extracted logic into smaller, purpose-specific functions:
+    - `deal_initial_cards()` handles the initial card dealing, improving the clarity of `start_game()`.
+    - `check_blackjack(player, dealer)` handles blackjack checking.
+  - Created a helper function for readability and reusability:
+    ```python
+    def has_blackjack(hand):
+      return sum(hand) == 21 and len(hand) == 2
+    ```
+  - Aligned `player_turn()` and `dealer_turn()` so that both return the same type of output (score and bust status) improving consistency.
+  - Removed blackjack handling from `compare_scores()` since it is now handled within `check_blackjack()`
+  - Made `start_game()` more streamlined and easier to follow - the flow more clearly follows the game steps: dealing cards, checking for blackjack, player turn, dealer turn, checking for busts, and then comparing scores to determine the winner.
 
 ## Day 10 - Functions with Outputs
 
