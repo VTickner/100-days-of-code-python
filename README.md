@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Beginner](#beginner)
+  - [Day 12 - Scope & Number Guessing Game](#day-12---scope--number-guessing-game)
   - [Day 11 - The Blackjack Capstone Project](#day-11---the-blackjack-capstone-project)
   - [Day 10 - Functions with Outputs](#day-10---functions-with-outputs)
   - [Day 9 - Dictionaries, Nesting and the Secret Auction](#day-9---dictionaries-nesting-and-the-secret-auction)
@@ -24,9 +25,42 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 
 # Beginner
 
+## Day 12 - Scope & Number Guessing Game
+
+Build a Number Guessing Game where the player must guess a randomly chosen number between 1 and 100.
+
+Game Features:
+
+- Two difficulty levels:
+  - Easy level - 10 attempts to guess number.
+  - Hard level - 5 attempts to guess number.
+- After each incorrect guess (if attempts remain), the player is told whether their guess was too high or too low.
+
+### Code & Potential Improvements:
+
+Before writing the code, I created the following flowchart to outline the game's logic and flow:
+
+![Guess The Number Flowchart](./beginner/guess_the_number_flowchart.jpg)
+
+Solution URL: [Day 11 - Number Guessing Game](./beginner/guess_the_number.py)
+
+- Added input validation functions.
+  - `get_level()` - ensures input is `easy` or `hard`
+  - `get_number()` - ensures input is a number between 1 and 100
+  - `get_y_n()` - ensures input is `y` or `n`
+- Added play again functionality.
+- Game logic separated into different functions for readability and modularity:
+  - `get_attempts_by_level() - sets attempts based on chosen level.
+  - `player_guesses(attempts, target)` - handles guess checking and feedback to the player.
+  - `start_game()` - initialises each game round.
+  - `play_guess_number()` - handles play again logic.
+- A potential improvement would be to add a scoring system that tracks wins/losses or records fewest guesses used to win (high score).
+
 ## Day 11 - The Blackjack Capstone Project
 
 ### Blackjack Game House Rules
+
+Build a Blackjack game with the following rules:
 
 - The deck is unlimited in size.
 - There are no jokers.
@@ -40,55 +74,58 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 
 ### Code & Potential Improvements:
 
-I created this flowchart to show the logic of the Blackjack game prior to coding the game:
+I created this flowchart to visualise the game logic before coding:
 
-![Blackjack Flowchart](./beginner//blackjack_flowchart.jpg)
+![Blackjack Flowchart](./beginner/blackjack_flowchart.jpg)
 
-- Solution URL: [Day 11 - Blackjack](./beginner/day11_blackjack.py)
-- Added input checking for player input - `get_choice(prompt)`
-- Split the code up into different functions to deal with the different tasks in the game:
+Solution URL: [Day 11 - Blackjack](./beginner/day11_blackjack.py)
+
+- Added input handling:
+  - `get_choice(prompt)` - ensures input is `y` or `n`
+- Broke the game into dedicated functions for each task:
   - `change_ace_score(hand)`
-  - `show_final_cards(player, player_score, dealer, dealer_score)`
-  - `ust(hand, player, player_score, dealer, dealer_score)`
+  - `show_final_cards(player, dealer)`
+  - `bust(hand, player, dealer)`
   - `player_turn(player, dealer)`
-  - `dealer_turn(player, player_score, dealer)`
-  - `compare_scores(player, player_score, dealer, dealer_score)`
+  - `dealer_turn(dealer)`
+  - `compare_scores(player_score, dealer_score)`
   - `start_game()`
   - `play_blackjack()`
-- Refactored to:
-  - Simplify the code and make it clearer to read.
-  - Renamed variables and functions for better clarity e.g. `cards` changed to `card_values`.
-  - Reduced the number of parameters in functions (most now have two or fewer). This was done by calculating values like `player_score` and `dealer_score` inside the function instead.
-  - Extracted logic into smaller, purpose-specific functions:
-    - `deal_initial_cards()` handles the initial card dealing, improving the clarity of `start_game()`.
-    - `check_blackjack(player, dealer)` handles blackjack checking.
-  - Created a helper function for readability and reusability:
+- Refactored for clarity and maintainability:
+  - Renamed variables and functions for clearer meaning e.g. `cards` -> `card_values`.
+  - Reduced function parameters by calculating `player_score` and `dealer_score` inside the relevant functions.
+  - Extracted specific tasks into smaller, purpose-specific functions:
+    - `deal_initial_cards()` - handles card dealing.
+    - `check_blackjack(player, dealer)` checks if either player or dealer hits blackjack.
+  - Added a reusable helper function for detecting blackjack:
     ```python
     def has_blackjack(hand):
       return sum(hand) == 21 and len(hand) == 2
     ```
-  - Aligned `player_turn()` and `dealer_turn()` so that both return the same type of output (score and bust status) improving consistency.
-  - Removed blackjack handling from `compare_scores()` since it is now handled within `check_blackjack()`
-  - Made `start_game()` more streamlined and easier to follow - the flow more clearly follows the game steps: dealing cards, checking for blackjack, player turn, dealer turn, checking for busts, and then comparing scores to determine the winner.
+  - Ensured `player_turn()` and `dealer_turn()` both return `(score, is_bust)` to maintain consistency.
+  - Moved blackjack checks out of `compare_scores()` and into `check_blackjack()`.
+  - Simplified `start_game()` so the sequence of gameplay is easier to follow: deal cards, check for blackjack, player's turn, dealer's turn, check for busts, compare scores.
 
 ## Day 10 - Functions with Outputs
 
-- Build a calculator program:
-  - Use functions to to calculate add, subtract, multiply and divide.
-  - Have a dictionary store keys for +, -, \*, / and values as the corresponding functions.
-  - Use the dictionary to perform the calculations.
-  - Program asks the user to type the first number.
-  - Program asks the user to type a mathematical operator (a choice of `+`, `-`, `*` or `/`)
-  - Program asks the user to type the second number.
-  - Program works out the result based on the chosen mathematical operator.
-  - Program asks if the user wants to continue working with the previous result.
-  - If yes, program loops to use the previous result as the first number and then repeats the calculation process.
-  - If no, program asks the user for the fist number again and wipes all memory of previous calculations.
-  - Add the logo from `calculator_art.py`.
+Build a calculator program:
+
+- Use functions to to calculate add, subtract, multiply and divide.
+- Have a dictionary store keys for +, -, \*, / and values as the corresponding functions.
+- Use the dictionary to perform the calculations.
+- Program asks the user to type the first number.
+- Program asks the user to type a mathematical operator (a choice of `+`, `-`, `*` or `/`)
+- Program asks the user to type the second number.
+- Program works out the result based on the chosen mathematical operator.
+- Program asks if the user wants to continue working with the previous result.
+- If yes, program loops to use the previous result as the first number and then repeats the calculation process.
+- If no, program asks the user for the fist number again and wipes all memory of previous calculations.
+- Add the logo from `calculator_art.py`.
 
 ### Code & Potential Improvements:
 
-- Solution URL: [Day 10 - Calculator](./beginner/day10_calculator.py)
+Solution URL: [Day 10 - Calculator](./beginner/day10_calculator.py)
+
 - Added input checking:
   - `get_number()` uses `while True`, along with `try / except ValueError` to ensure only numbers have been entered.
   - `get_operation()` uses `while True` to ensure only valid calculator operators have been entered.
@@ -96,17 +133,19 @@ I created this flowchart to show the logic of the Blackjack game prior to coding
 
 ## Day 9 - Dictionaries, Nesting and the Secret Auction
 
-- Build a blind auction program:
-  - Use the flowchart to guide the creation of the blind auction program:
-    ![Secret Auction Flowchart](./beginner/secret_auction_flowchart.jpg)
-  - Ask the user for input: name and bid.
-  - Save the data into a dictionary.
-  - Check whether new bids need to be entered.
-  - Compare the bids in the dictionary.
+Build a blind auction program:
+
+- Use the flowchart to guide the creation of the blind auction program:
+  ![Secret Auction Flowchart](./beginner/secret_auction_flowchart.jpg)
+- Ask the user for input: name and bid.
+- Save the data into a dictionary.
+- Check whether new bids need to be entered.
+- Compare the bids in the dictionary.
 
 ### Code & Potential Improvements:
 
-- Solution URL: [Day 9 - Secret Auction](./beginner/day9_secret_auction.py)
+Solution URL: [Day 9 - Secret Auction](./beginner/day9_secret_auction.py)
+
 - Used `while True`, along with `try / except ValueError` to check the input for the bids are valid numbers.
 - If there are other bids, `print("\n" * 20)` was used to create some vertical space for the next bidder to not see the previous bid on the screen.
 - Formatted the output of the winning bid to 2dp to keep it consistent with how currency is written: `${max_bid:.2f}`.
@@ -135,7 +174,8 @@ As the `encrypt()` and `decrypt()` functions are so similar:
 
 ### Code & Potential Improvements:
 
-- Solution URL: [Day 8 - Caesar Cipher](./beginner/day8_caesar_cipher.py)
+Solution URL: [Day 8 - Caesar Cipher](./beginner/day8_caesar_cipher.py)
+
 - When calling `caesar()` I ensured it was very clear what variables belonged to which parameters by using named arguments: `caesar(original_text=text, shift_amount=shift, encode_or_decode=direction)`. This makes the function call more readable and avoids confusion, especially when a function has multiple parameters.
 
 ## Day 7 - Hangman
@@ -170,7 +210,8 @@ As the `encrypt()` and `decrypt()` functions are so similar:
 Flowchart to show the logic of the Hangman game:
 ![Hangman Flowchart](./beginner/hangman_flowchart_v2.jpg)
 
-- Solution URL: [Day 7 - Hangman](./beginner/day7_hangman.py)
+Solution URL: [Day 7 - Hangman](./beginner/day7_hangman.py)
+
 - Incorrect guesses that have already been previously guessed do not lose another life. This is done by adding all incorrect guesses to `incorrect_letters` and checking guesses against `incorrect_letters` to see whether the user loses a life or not.
 - Refactored to make more concise and improve readability.
 - Added a check on user input to make sure a single letter was entered.
@@ -186,7 +227,8 @@ Write a program using an if/elif/else statement so Reeborg can find the exit. Th
 
 ### Code & Potential Improvements:
 
-- Solution URL: [Day 6 - Escaping The Maze](./beginner/day6_escaping_the_maze.txt)
+Solution URL: [Day 6 - Escaping The Maze](./beginner/day6_escaping_the_maze.txt)
+
 - As there was no `turn_right()` function, I defined one, using the `turn_left()` function.
 - Used the functions `at_goal()`, `right_is_clear()` and `front_is_clear()` to detect where it is possible for Reeborg to move to.
 
@@ -204,7 +246,8 @@ The objective is to take the inputs from the user to these questions and then ge
 
 ### Code & Potential Improvements:
 
-- Solution URL: [Day 5 - Password Generator](./beginner/day5_password_generator.py)
+Solution URL: [Day 5 - Password Generator](./beginner/day5_password_generator.py)
+
 - I defined a function `get_input_quantity(password_question)` to obtain the answers to the questions posed to the user. This function uses `while True`, along with `try / except ValueError` to check the inputs to the user questions are valid numbers.
 - I defined a function `generate_password_section(quantity, password_section, password)` to obtain the appropriate amount of letters, numbers and symbols as requested by the user. Using `random.choice(password_section)` to randomly pick an item from the appropriate list.
 - Once the password is generated,`random.shuffle()` is used to mix up the letters, numbers and symbols in the password.
@@ -213,11 +256,12 @@ The objective is to take the inputs from the user to these questions and then ge
 
 ### Project requirements
 
-- Build a Rock Paper Scissors game.
+Build a Rock Paper Scissors game.
 
 ### Code & Potential Improvements:
 
-- Solution URL: [Day 4 - Rock Paper Scissors](./beginner/day4_rock_paper_scissors.py)
+Solution URL: [Day 4 - Rock Paper Scissors](./beginner/day4_rock_paper_scissors.py)
+
 - I used a list to hold the ascii art variables to allow selection of rock, paper, scissors choices.
 - I used `while True`, along with `try / except ValueError` and `if user_choice not in [0, 1, 2]` to check whether the user's choice was 0 (rock), 1 (paper), 2 (scissors).
 - `import random` with `computer_choice = random.randint(0,2)` was used to generate a random choice for the computer.
@@ -227,14 +271,16 @@ The objective is to take the inputs from the user to these questions and then ge
 
 ### Project requirements:
 
-- Build a "Chose your own adventure game".
+Build a "Chose your own adventure game".
+
 - Use the [flow chart](https://app.diagrams.net/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Treasure%20Island%20Conditional.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1oDe4ehjWZipYRsVfeAx2HyB7LCQ8_Fvi%26export%3Ddownload#%7B%22pageId%22%3A%22C5RBs43oDa-KdzZeNtuy%22%7D) linked to create the game logic for the adventure game.
 
   <img src="./beginner/treasure_island_conditional.jpg" width="500">
 
 ### Code & Potential Improvements:
 
-- Solution URL: [Day 3 - Treasure Island](./beginner/day3_treasure_island.py)
+Solution URL: [Day 3 - Treasure Island](./beginner/day3_treasure_island.py)
+
 - I used `if / else` statements to select the user's choice.
 - I used a dictionary to hold the ending outcomes of which door the user selected at the end of the adventure game.
 
@@ -256,7 +302,8 @@ Example:
 
 ### Code & Potential Improvements:
 
-- Solution URL: [Day 2 - Tip Calculator](./beginner/day2_tip_calculator.py)
+Solution URL: [Day 2 - Tip Calculator](./beginner/day2_tip_calculator.py)
+
 - I used `while True` and `if` statements to check whether the bill and the number of people splitting the bill are numbers > 0 and if not to request the input again from the user.
 - I used `while True` and `if tip not in [10, 12, 15]` to check whether the tip amount was 10, 12 or 15%.
 - To get the output to always be to 2 decimal places:
@@ -276,7 +323,8 @@ Example:
 
 ### Code & Potential Improvements:
 
-- Solution URL: [Day 1 - Band Name Generator](./beginner/day1_band_name_generator.py)
+Solution URL: [Day 1 - Band Name Generator](./beginner/day1_band_name_generator.py)
+
 - I used `while True` and `if` statements to check whether an empty string had been entered for the city and pet names and if so to request the input again from the user.
 
 # Other
