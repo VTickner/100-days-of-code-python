@@ -1,6 +1,12 @@
 import random
 from guess_the_number_art import logo
 
+#---------- INITIALISE ----------#
+
+EASY_LEVEL_ATTEMPTS = 10
+HARD_LEVEL_ATTEMPTS = 5
+
+
 #---------- INPUT HANDLERS ----------#
 
 def get_level(prompt):
@@ -38,7 +44,7 @@ def get_y_n(prompt):
 
 def get_attempts_by_level():
     level = get_level("\nChoose a difficulty. Type 'easy' or 'hard': ")
-    return 10 if level == "easy" else 5
+    return EASY_LEVEL_ATTEMPTS if level == "easy" else HARD_LEVEL_ATTEMPTS
 
 
 def player_guesses(attempts, target):

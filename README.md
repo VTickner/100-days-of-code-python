@@ -50,7 +50,7 @@ Solution URL: [Day 11 - Number Guessing Game](./beginner/guess_the_number.py)
   - `get_y_n()` - ensures input is `y` or `n`
 - Added play again functionality.
 - Game logic separated into different functions for readability and modularity:
-  - `get_attempts_by_level() - sets attempts based on chosen level.
+  - `get_attempts_by_level()` - sets attempts based on chosen level.
   - `player_guesses(attempts, target)` - handles guess checking and feedback to the player.
   - `start_game()` - initialises each game round.
   - `play_guess_number()` - handles play again logic.
