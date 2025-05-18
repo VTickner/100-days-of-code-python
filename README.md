@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Beginner](#beginner)
+  - [Day 13 - Debugging: How to Find and Fix Errors in Your Code](#day-13---debugging-how-to-find-and-fix-errors-in-your-code)
   - [Day 12 - Scope & Number Guessing Game](#day-12---scope--number-guessing-game)
   - [Day 11 - The Blackjack Capstone Project](#day-11---the-blackjack-capstone-project)
   - [Day 10 - Functions with Outputs](#day-10---functions-with-outputs)
@@ -25,6 +26,46 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 
 # Beginner
 
+## Day 14 - Higher Lower Game Project
+
+Build a Higher Lower Game where the player must guess which of two options has the higher follower count.
+
+Game Features:
+
+- Score points for every correct guess.
+- Randomly choose two different items to compare (must not be the same item).
+- When the player guesses correctly, move option B to option A and randomly generate a new option B.
+- When the player guesses incorrectly, the game ends.
+
+### Code & Potential Improvements:
+
+I created the following flowchart to outline the game's logic and flow:
+
+![Higher Lower Game Flowchart](./beginner/higher_lower_flowchart.jpg)
+
+Solution URL: [Day 14 - Higher Lower Game](./beginner/day14_higher_lower.py)
+
+Input Handling:
+
+- Added a reusable input validation function: `get_choice()`
+  - Ensures input is `A` or `B` (used for player guesses), or `Y` or `N` (used to replay the game)
+
+Data Handling functions:
+
+- `get_random_item()` - retrieves a random item from [higher_lower_data.py](./beginner/higher_lower_data.py)
+- `get_comparison_item(item)` - ensures the second item is different from the first.
+- `format_item_info()` - formats for display item information clearly to the user.
+- `compare_follower_accounts(item_a, item_b)` - compares follower counts and returns the correct choice (`A` or `B`).
+
+Game logic:
+
+- `play_game()` - runs each game session, handles comparison logic and tracks scoring.
+- `start_higher_lower()` - manages replay functionality.
+
+## Day 13 - Debugging: How to Find and Fix Errors in Your Code
+
+Day 13 focused on various debugging techniques and how to use a debugger tool.
+
 ## Day 12 - Scope & Number Guessing Game
 
 Build a Number Guessing Game where the player must guess a randomly chosen number between 1 and 100.
@@ -42,7 +83,7 @@ Before writing the code, I created the following flowchart to outline the game's
 
 ![Guess The Number Flowchart](./beginner/guess_the_number_flowchart.jpg)
 
-Solution URL: [Day 11 - Number Guessing Game](./beginner/guess_the_number.py)
+Solution URL: [Day 12 - Number Guessing Game](./beginner/day12_guess_the_number.py)
 
 - Added input validation functions.
   - `get_level()` - ensures input is `easy` or `hard`
@@ -331,6 +372,7 @@ Solution URL: [Day 1 - Band Name Generator](./beginner/day1_band_name_generator.
 
 ## Tools and Technologies Used
 
+- Debugger
 - Flowcharts
 - Python
 - PyCharm
