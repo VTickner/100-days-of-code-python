@@ -129,7 +129,9 @@ Solution URL: [Day 15 - Coffee Machine](./intermediate/day15_coffee_machine.py)
 5. Potential Improvements:
 
 - Refill resources: Add a feature to allow topping up of ingredients during runtime.
+  - Added `refill_resources()` and modified `get_number(prompt)` to get 0 and positive numbers only.
 - Menu display: Show available drinks and prices.
+  - Added `print_menu()
 - Have data persist after turned `off` so can keep amount of resources and profit (save to a file).
 
 # Beginner

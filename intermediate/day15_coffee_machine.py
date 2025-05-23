@@ -13,7 +13,7 @@ profit = 0.0
 #---------- INPUT HANDLERS ----------#
 
 VALID_DRINKS = ["cappuccino", "espresso", "latte"]
-VALID_COMMANDS = ["off", "report"]
+VALID_COMMANDS = ["off", "report", "refill", "menu"]
 VALID_INPUTS = VALID_DRINKS + VALID_COMMANDS
 
 def get_choice(prompt):
@@ -26,10 +26,16 @@ def get_choice(prompt):
 
 
 def get_number(prompt):
-    """Prompt for a number"""
+    """Prompt for a positive number, 0 is allowed"""
     while True: 
         try:
-            return float(input(prompt))
+            amount = float(input(prompt))
+            if amount < 0:
+                print("Please enter a positive number.")
+            elif not amount.is_integer():
+                print("Please enter a whole number.")
+            else:
+                return int(amount)
         except ValueError:
             print("Invalid input. Please enter a number.")
 
@@ -44,6 +50,13 @@ def print_report():
     print(f"Money: ${profit:.2f}")
 
 
+def print_menu():
+    """Display the drink options and prices"""
+    print("Available drinks:")
+    for drink, price in MENU.items():
+        print(f"- {drink.title()}: ${price['cost']:.2f}")
+
+
 def is_resource_sufficient(ingredients):
     """Check if there are enough resources to make the drink"""
     for item, required in ingredients.items():
@@ -51,6 +64,16 @@ def is_resource_sufficient(ingredients):
             print(f"Sorry there is not enough {item}.")
             return False
     return True
+
+
+def refill_resources():
+    """Allow user to refill resources"""
+    print("Refilling resources...")
+    for item in resources:
+        unit = "ml" if item != "coffee" else "g"
+        amount = get_number(f"How many {unit} of {item} would you like to add?: ")
+        resources[item] += amount
+    print("Resources refilled.\n")
 
 
 def collect_payment():
@@ -90,11 +113,14 @@ def start_coffee_machine():
 
     while machine_on:
         choice = get_choice("\nWhat would you like? (espresso/latte/cappuccino): ")
-        
         if choice == "off":
             machine_on = False
         elif choice == "report":
             print_report()
+        elif choice == "menu":
+            print_menu()
+        elif choice == "refill":
+            refill_resources()
         else:
             drink = MENU[choice]
             if is_resource_sufficient(drink["ingredients"]):
