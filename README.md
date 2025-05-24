@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Intermediate](#intermediate)
+  - [Day 16 - Object Oriented Programming (OOP)](#day-16---object-oriented-programming-oop)
   - [Day 15 - Local Development Environment Setup & the Coffee Machine](#day-15---local-development-environment-setup--the-coffee-machine)
 - [Beginner](#beginner)
   - [Day 14 - Higher Lower Game Project](#day-14---higher-lower-game-project)
@@ -28,6 +29,30 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
   - [Author](#author)
 
 # Intermediate
+
+## Day 16 - Object Oriented Programming (OOP)
+
+This project is a refactor of the [Day 15 coffee machine](#day-15---local-development-environment-setup--the-coffee-machine) exercise, redesigning the program using Object Oriented Programming principles. The classes (`CoffeeMaker`, `Menu` and `MoneyMachine`) were provided as part of the project, and the main task was to rewrite the coffee machine’s functionality by properly implementing and leveraging these classes and their methods.
+
+### Code & Potential Improvements:
+
+Solution URL: [Day 16 - OOP Coffee Machine](./intermediate/day16_oop_coffee_machine/main.py)
+OOP files:
+
+- [CoffeeMaker Class](./intermediate/day16_oop_coffee_machine/coffee_maker.py)
+- [Menu Class](./intermediate/day16_oop_coffee_machine/menu.py)
+- [MoneyMachine Class](./intermediate/day16_oop_coffee_machine/money_machine.py)
+
+Documentation:
+
+- [Coffee Machine Classes Documentation (PDF)](./intermediate/day16_oop_coffee_machine/Coffee+Machine+Classes+Documentation.pdf)
+
+In adapting the coffee machine to utilise OOP:
+
+- Valid drinks are dynamically generated and sorted from the `Menu` class, ensuring input validation stays accurate without manual updates.
+- While the classes provide convenient methods such as `money.report()` and `menu.get_items()`, I chose to comment those out to preserve the exact output format from my original procedural version. Instead, I extracted and formatted data directly from the class attributes, thereby retaining consistent output while still utilising the class-based design.
+- Resource refilling directly updates the `CoffeeMaker`’s resources with validated whole numbers.
+- Drink lookup utilises `Menu.find_drink()` for cleaner and more readable code.
 
 ## Day 15 - Local Development Environment Setup & the Coffee Machine
 
@@ -131,7 +156,7 @@ Solution URL: [Day 15 - Coffee Machine](./intermediate/day15_coffee_machine.py)
 - Refill resources: Add a feature to allow topping up of ingredients during runtime.
   - Added `refill_resources()` and modified `get_number(prompt)` to get 0 and positive numbers only.
 - Menu display: Show available drinks and prices.
-  - Added `print_menu()
+  - Added `print_menu()`
 - Have data persist after turned `off` so can keep amount of resources and profit (save to a file).
 
 # Beginner
