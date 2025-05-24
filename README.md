@@ -37,6 +37,7 @@ This project is a refactor of the [Day 15 coffee machine](#day-15---local-develo
 ### Code & Potential Improvements:
 
 Solution URL: [Day 16 - OOP Coffee Machine](./intermediate/day16_oop_coffee_machine/main.py)
+
 OOP files:
 
 - [CoffeeMaker Class](./intermediate/day16_oop_coffee_machine/coffee_maker.py)

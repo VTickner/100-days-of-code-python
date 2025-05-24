@@ -66,7 +66,7 @@ def start_coffee_machine():
     machine_on = True
 
     while machine_on:
-        choice = get_choice("\nWhat would you like? (espresso/latte/cappuccino): ")
+        choice = get_choice(f"\nWhat would you like? ({'/'.join(VALID_INPUTS[:3])}): ")
         if choice == "off":
             machine_on = False
         elif choice == "report":
