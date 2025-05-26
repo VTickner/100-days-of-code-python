@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Intermediate](#intermediate)
+  - [Day 17 - The Quiz Project & the Benefits of OOP](#day-17---the-quiz-project--the-benefits-of-oop)
   - [Day 16 - Object Oriented Programming (OOP)](#day-16---object-oriented-programming-oop)
   - [Day 15 - Local Development Environment Setup & the Coffee Machine](#day-15---local-development-environment-setup--the-coffee-machine)
 - [Beginner](#beginner)
@@ -29,6 +30,40 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
   - [Author](#author)
 
 # Intermediate
+
+## Day 17 - The Quiz Project & the Benefits of OOP
+
+This is a True/False quiz game project developed using Object Oriented Programming (OOP) principles to ensure clarity and modularity.
+
+Class Responsibilities:
+
+`Question`: Represents a single quiz question along with its correct answer.
+
+`QuizBrain`: Manages the core quiz logic, including:
+
+- Quiz progression (`question_number`).
+- Scoring tracking (`score`).
+- Handling the list of questions (`question_list`).
+- Managing user input and responses.
+
+### Code & Potential Improvements:
+
+Solution URL: [Day 17 - Quiz Game](./intermediate/day17_quiz_game/main.py)
+
+Data file: [Data](./intermediate/day17_quiz_game/data.py)
+
+OOP files:
+
+- [Question Class](./intermediate/day17_quiz_game/question_model.py)
+- [QuizBrain Class](./intermediate/day17_quiz_game/quiz_brain.py)
+
+Key enhancements made:
+
+- Input validation: I added robust input handling to ensure only `True` or `False` responses are accepted.
+- Encapsulation: I made `check_answer()` and `get_choice()` private methods, as they are only used within the `QuizBrain` class.
+- Refactoring:
+  - I renamed some variables and methods for improved readability and clarity.
+  - I added type annotations to method parameters and return types for better code understanding.
 
 ## Day 16 - Object Oriented Programming (OOP)
 
