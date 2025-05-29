@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Intermediate](#intermediate)
+  - [Day 18 - Turtle & the Graphical User Interface (GUI)](#day-18---turtle--the-graphical-user-interface-gui)
   - [Day 17 - The Quiz Project & the Benefits of OOP](#day-17---the-quiz-project--the-benefits-of-oop)
   - [Day 16 - Object Oriented Programming (OOP)](#day-16---object-oriented-programming-oop)
   - [Day 15 - Local Development Environment Setup & the Coffee Machine](#day-15---local-development-environment-setup--the-coffee-machine)
@@ -30,6 +31,44 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
   - [Author](#author)
 
 # Intermediate
+
+## Day 18 - Turtle & the Graphical User Interface (GUI)
+
+This session involved a serious of mini-projects exploring Python's built-in `Turtle` module to generate various shapes and visual patterns, along with randomised colour-based artwork. The focus was on learning how to use turtle graphics for creative drawing, integrating colour, and controlling movement on screen.
+
+The [Turtle](https://pypi.org/project/PythonTurtle/) module was used to the following graphical outputs:
+
+- A square
+- A dashed line
+- Multiple polygon shapes with randomised colours
+- A random walk (random path with randomised colours)
+- A spirograph with randomised colours
+
+These projects utilised direction control, pen manipulation and colour randomisation to create dynamic visual effects.
+
+### Dot Painting
+
+The [Colorgram](https://pypi.org/project/colorgram.py/) module was used to extract colour palettes from an image. These RGB colour tuples were then used along with the turtle module to create a grid of coloured dots in the style of Damien Hirst's iconic spot paintings.
+
+```python
+colours = colorgram.extract("image.jpg", 30)
+rgb_colours = [(colour.rgb.r, colour.rgb.g, colour.rgb.b) for colour in colours] # need colours in rgb format
+```
+
+These colours were manually saved to a list and used to randomly assign colours to each dot in a 10 x 10 grid, with consistent spacing and size.
+
+Here's the result of my dot painting creation:
+
+<img src="./intermediate/painting_result.jpg" width="500">
+
+### Code & Potential Improvements:
+
+Solution URLs:
+
+- [Day 18 - Turtle Drawings](./intermediate/day18_turtle_drawings.py)
+- [Day 18 - Hirst Painting](./intermediate/day18_hirst_painting.py)
+
+`screen.exitonclick()` was used to keep the turtle window open until clicked upon by the user.
 
 ## Day 17 - The Quiz Project & the Benefits of OOP
 
