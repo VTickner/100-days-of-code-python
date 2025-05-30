@@ -13,7 +13,7 @@ tim = Turtle()
 screen = Screen()
 
 
-#---------- HELPER FUNCTION ----------#
+#---------- HELPER FUNCTIONS ----------#
 
 def is_on_screen(x, y):
     """Check whether turtle is within screen boundaries. Center position is (0,0) so edges are half width/height."""
@@ -22,20 +22,25 @@ def is_on_screen(x, y):
     return -half_width < x < half_width and -half_height < y < half_height
 
 
+def try_move(move_func, undo_func):
+    """
+    Moves by STEP using move_func(), if off-screen, revert move by STEP using undo_func().
+    Acts as a reusable check to prevent the turtle from moving outside the visible area.
+    """
+    move_func(STEP)
+    x, y = tim.pos()
+    if not is_on_screen(x, y):
+        undo_func(STEP * 2)
+
+
 #---------- DRAWING FUNCTIONS ----------#
 
 def move_forward():
-    tim.forward(STEP)
-    x, y = tim.pos()
-    if not is_on_screen(x, y):
-        tim.backward(STEP)
+    try_move(tim.forward, tim.backward)
 
 
 def move_backward():
-    tim.backward(STEP)
-    x, y = tim.pos()
-    if not is_on_screen(x, y):
-        tim.forward(STEP)
+    try_move(tim.backward, tim.forward)
 
 
 def turn_left():
