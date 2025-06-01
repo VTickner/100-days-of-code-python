@@ -37,9 +37,9 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 
 ### Etch-A-Sketch
 
-This project focused on creating an interactive Etch-A-Sketch style drawing application using Python’s [Turtle](https://pypi.org/project/PythonTurtle/) module. The Etch-A-Sketch program allowed the user to control a turtle cursor to draw lines by using keyboard controls to move forward, backward, and turn left or right. The program also included features such as:
+This project focused on creating an interactive Etch-A-Sketch style drawing application using Python’s [Turtle](https://pypi.org/project/PythonTurtle/) module. The Etch-A-Sketch program allows the user to control a turtle cursor to draw lines by using keyboard controls to move forward, backward, and turn left or right. The program also includes features such as:
 
-- Clear Screen functionality to reset the drawing.
+- Clear screen functionality to reset the drawing.
 - Use of constants to manage movement distance and turning angle.
 - Boundary detection to prevent the turtle from moving off-screen.
 
@@ -54,6 +54,23 @@ Potential improvements include:
 - Adding speed control to let users change the turtle’s movement speed.
 - Implementing colour changing via keyboard commands to create more dynamic drawings.
 - Adding undo/redo features to manage drawing history.
+- Allow for pen to be lifted up/down so can move cursor to a different location before drawing again.
+
+### Turtle Race
+
+This project focused on creating a fun and interactive turtle racing game using Python's [Turtle](https://pypi.org/project/PythonTurtle/) graphics module. The program prompts the user to place a bet on which coloured turtle they think will win the race. Once the bet is placed, multiple turtles race from left to right across the screen, each moving forward by a random amount on each iteration. The race ends when one of the turtles crosses the finish line, and a message displays whether the user won or lost their bet.
+
+### Code & Potential Improvements:
+
+Solution URLs:
+
+- [Day 19 - Turtle Race](./intermediate/day19_turtle_race.pyy)
+
+Potential improvements include:
+
+- Display instructions in graphics window (notifying user of colours can bet on).
+- Display race result in graphics window.
+- Add replay option.
 
 ## Day 18 - Turtle & the Graphical User Interface (GUI)
 
