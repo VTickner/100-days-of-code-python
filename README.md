@@ -45,16 +45,17 @@ This project focused on creating an interactive Etch-A-Sketch style drawing appl
 
 ### Code & Potential Improvements:
 
-Solution URLs:
+Solution URL:
 
 - [Day 19 - Etch-A-Sketch](./intermediate/day19_etch_a_sketch.py)
 
 Potential improvements include:
 
+- Display instructions in graphics window (notifying user of keyboard commands) - ADDED.
+- Allow for pen to be lifted up/down so can move cursor to a different location before drawing again.
 - Adding speed control to let users change the turtle’s movement speed.
 - Implementing colour changing via keyboard commands to create more dynamic drawings.
 - Adding undo/redo features to manage drawing history.
-- Allow for pen to be lifted up/down so can move cursor to a different location before drawing again.
 
 ### Turtle Race
 
@@ -62,9 +63,9 @@ This project focused on creating a fun and interactive turtle racing game using 
 
 ### Code & Potential Improvements:
 
-Solution URLs:
+Solution URL:
 
-- [Day 19 - Turtle Race](./intermediate/day19_turtle_race.pyy)
+- [Day 19 - Turtle Race](./intermediate/day19_turtle_race.py)
 
 Potential improvements include:
 
