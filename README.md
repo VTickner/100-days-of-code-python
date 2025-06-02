@@ -69,8 +69,8 @@ Solution URL:
 
 Potential improvements include:
 
-- Display instructions in graphics window (notifying user of colours can bet on).
-- Display race result in graphics window.
+- Display instructions in graphics window (notifying user of colours can bet on) - ADDED.
+- Display input error message and race result in graphics window - ADDED.
 - Add replay option.
 
 ## Day 18 - Turtle & the Graphical User Interface (GUI)

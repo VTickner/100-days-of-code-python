@@ -22,15 +22,48 @@ screen.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
 
 #---------- HELPER FUNCTION ----------#
 
-def get_user_bet(title, prompt):
+def get_user_bet(writer: Turtle, title, prompt):
     """Prompt user for colour choice, case-insensitive."""
     while True:
         choice = screen.textinput(title=title, prompt=prompt)
         if choice:
             choice = choice.strip().lower()
             if choice in COLOURS:
+                writer.clear()
                 return choice
-        print(f"Invalid input. Please enter one of: {', '.join(COLOURS)}.")
+        show_message(writer, f"Invalid input. Please enter one of: {', '.join(COLOURS)}.")
+
+
+#---------- UI DISPLAY FUNCTIONS ----------#
+
+def show_instructions(writer: Turtle) -> None:
+    """Display initial instructions using a hidden turtle."""
+    writer.hideturtle()
+    writer.penup()
+
+    instructions = [
+        ("Welcome to Turtle Race!", 100, 16, "bold"),
+        ("Place your bet on a colour:", 60, 12, "normal"),
+        ("Red | Orange | Yellow | Green | Blue | Purple", 30, 10, "normal"),
+        ("Press any key to start the race...", -70, 10, "italic"),  
+    ]
+    
+    for text, y, size, style in instructions:
+        writer.goto(0, y)
+        writer.write(arg=text, align="center", font=("Arial", size, style))
+
+
+def clear_instructions(writer: Turtle) -> None:
+    """Clear instructions display."""
+    writer.clear()
+
+
+def show_message(writer: Turtle, message: str) -> None:
+    """Display a message."""
+    writer.penup()
+    writer.goto(x=0, y=100)
+    writer.write(arg=message, align="center", font=("Arial", 10, "bold"))
+    writer.hideturtle()
 
 
 #---------- TURTLE RACE FUNCTIONS ----------#
@@ -51,12 +84,15 @@ def setup_turtles(colours):
     return turtles
 
 
-def run_race(turtles, user_bet):
+def run_race(turtles, user_bet, writer: Turtle):
     while True:
         for colour, turtle in turtles.items():
             if turtle.xcor() > FINISH_LINE_X:
+                for racer in turtles.values():
+                    racer.clear()
+                    racer.hideturtle()
                 result = "won" if colour == user_bet else "lost"
-                print(f"You {result}! The {colour} turtle is the winner!")
+                show_message(writer, f"You {result}! The {colour} turtle is the winner!")
                 return
             turtle.forward(random.randint(0, 10))
 
@@ -64,13 +100,23 @@ def run_race(turtles, user_bet):
 #---------- MAIN PROGRAM ----------#
 
 def start_turtle_race():
-    user_bet = get_user_bet("Make your bet", "Which turtle will win the race? Enter a colour: ")
+    """Clear instructions, prompt bet and start race."""
+    clear_instructions(writer)
+    user_bet = get_user_bet(writer, "Make your bet", "Which turtle will win the race? Enter a colour: ")
     turtles = setup_turtles(COLOURS)
-    run_race(turtles, user_bet)
+    run_race(turtles, user_bet, writer)
 
 
-#---------- ENTRY POINT ----------#
+def main():
+    global writer
+
+    writer = Turtle()
+    show_instructions(writer)
+
+    screen.listen()
+    screen.onkeypress(start_turtle_race)
+    screen.exitonclick()
+
 
 if __name__ == "__main__":
-    start_turtle_race()
-    screen.exitonclick()
+    main()
