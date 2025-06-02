@@ -52,7 +52,7 @@ Solution URL:
 Potential improvements include:
 
 - Display instructions in graphics window (notifying user of keyboard commands) - ADDED.
-- Allow for pen to be lifted up/down so can move cursor to a different location before drawing again.
+- Allow for pen to be lifted up/down so can move cursor to a different location before drawing again - ADDED.
 - Adding speed control to let users change the turtle’s movement speed.
 - Implementing colour changing via keyboard commands to create more dynamic drawings.
 - Adding undo/redo features to manage drawing history.

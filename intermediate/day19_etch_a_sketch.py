@@ -5,7 +5,7 @@ from turtle import Turtle, Screen
 
 STEP = 10
 TURN_ANGLE = 15
-KEYS_TO_START = ["w", "s", "a", "d", "c", " "]
+KEYS_TO_START = ["w", "s", "a", "d", "c", "Up", "Down", " "]
 
 
 #---------- INITIALISE SCREEN ----------#
@@ -43,7 +43,8 @@ def show_instructions(writer: Turtle) -> None:
         ("W - Move forward | S - Move backward", 30, 10, "normal"),
         ("A - Turn left | D - Turn right", 10, 10, "normal"),
         ("C - Clear screen", -10, 10, "normal"),
-        ("Press any key to start drawing...", -50, 10, "italic"),  
+        ("Up arrow - Pen up | Down arrow - Pen down", -30, 10, "normal"),
+        ("Press any key to start drawing...", -70, 10, "italic"),  
     ]
     
     for text, y, size, style in instructions:
@@ -79,6 +80,14 @@ def initialise_controls(sketcher: Turtle) -> None:
     def turn_right():
         sketcher.right(TURN_ANGLE)
 
+    
+    def pen_up():
+        sketcher.penup()
+    
+
+    def pen_down():
+        sketcher.pendown()
+
 
     def clear_screen():
         sketcher.reset()
@@ -87,6 +96,8 @@ def initialise_controls(sketcher: Turtle) -> None:
     screen.onkeypress(fun=move_backward, key="s")
     screen.onkeypress(fun=turn_left, key="a")
     screen.onkeypress(fun=turn_right, key="d")
+    screen.onkeypress(fun=pen_up, key="Up")
+    screen.onkeypress(fun=pen_down, key="Down")
     screen.onkeypress(fun=clear_screen, key="c")
     screen.listen()
 
