@@ -66,6 +66,11 @@ def show_message(writer: Turtle, message: str) -> None:
     writer.hideturtle()
 
 
+def show_result(writer: Turtle, winner: str, user_bet: str):
+    result = "won" if winner == user_bet else "lost"
+    show_message(writer, f"You {result}! The {winner} turtle is the winner!")
+
+
 #---------- TURTLE RACE FUNCTIONS ----------#
 
 def setup_turtles(colours):
@@ -84,16 +89,14 @@ def setup_turtles(colours):
     return turtles
 
 
-def run_race(turtles, user_bet, writer: Turtle):
+def run_race(turtles) -> str:
     while True:
         for colour, turtle in turtles.items():
             if turtle.xcor() > FINISH_LINE_X:
                 for racer in turtles.values():
                     racer.clear()
                     racer.hideturtle()
-                result = "won" if colour == user_bet else "lost"
-                show_message(writer, f"You {result}! The {colour} turtle is the winner!")
-                return
+                return colour
             turtle.forward(random.randint(0, 10))
 
 
@@ -102,9 +105,19 @@ def run_race(turtles, user_bet, writer: Turtle):
 def start_turtle_race():
     """Clear instructions, prompt bet and start race."""
     clear_instructions(writer)
-    user_bet = get_user_bet(writer, "Make your bet", "Which turtle will win the race? Enter a colour: ")
-    turtles = setup_turtles(COLOURS)
-    run_race(turtles, user_bet, writer)
+
+    while True:
+        user_bet = get_user_bet(writer, "Make your bet", "Which turtle will win the race? Enter a colour: ")
+        turtles = setup_turtles(COLOURS)
+        winner = run_race(turtles)
+        show_result(writer, winner, user_bet)
+
+        again = screen.textinput("Race Again?", "Would you like to race again? (yes/no): ")
+        if not again or again.strip().lower() not in ["yes", "y"]:
+            writer.clear()
+            show_message(writer, "Thanks for playing!")
+            break
+        writer.clear()
 
 
 def main():
