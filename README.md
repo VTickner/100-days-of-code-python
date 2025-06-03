@@ -57,6 +57,8 @@ Potential improvements include:
 - Implementing colour changing via keyboard commands to create more dynamic drawings.
 - Adding undo/redo features to manage drawing history.
 
+<img src="./intermediate/etch_a_sketch_1.jpg" width="400"> <img src="./intermediate/etch_a_sketch_2.jpg" width="400">
+
 ### Turtle Race
 
 This project focused on creating a fun and interactive turtle racing game using Python's [Turtle](https://pypi.org/project/PythonTurtle/) graphics module. The program prompts the user to place a bet on which coloured turtle they think will win the race. Once the bet is placed, multiple turtles race from left to right across the screen, each moving forward by a random amount on each iteration. The race ends when one of the turtles crosses the finish line, and a message displays whether the user won or lost their bet.
@@ -73,6 +75,9 @@ Potential improvements include:
 - Display input error message and race result in graphics window - ADDED.
 - Add replay option - ADDED.
 - Add a score function for how many bets won.
+
+<img src="./intermediate/turtle_race1.jpg" width="400"> <img src="./intermediate/turtle_race2.jpg" width="400">
+<img src="./intermediate/turtle_race3.jpg" width="400"> <img src="./intermediate/turtle_race4.jpg" width="400">
 
 ## Day 18 - Turtle & the Graphical User Interface (GUI)
 
