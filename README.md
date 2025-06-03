@@ -57,7 +57,7 @@ Potential improvements include:
 - Implementing colour changing via keyboard commands to create more dynamic drawings.
 - Adding undo/redo features to manage drawing history.
 
-<img src="./intermediate/etch_a_sketch_1.jpg" width="400"> <img src="./intermediate/etch_a_sketch_2.jpg" width="400">
+<img src="./intermediate/etch_a_sketch_1.jpg" width="300"> <img src="./intermediate/etch_a_sketch_2.jpg" width="300">
 
 ### Turtle Race
 
@@ -76,8 +76,8 @@ Potential improvements include:
 - Add replay option - ADDED.
 - Add a score function for how many bets won.
 
-<img src="./intermediate/turtle_race1.jpg" width="400"> <img src="./intermediate/turtle_race2.jpg" width="400">
-<img src="./intermediate/turtle_race3.jpg" width="400"> <img src="./intermediate/turtle_race4.jpg" width="400">
+<img src="./intermediate/turtle_race1.jpg" width="300"> <img src="./intermediate/turtle_race2.jpg" width="300">
+<img src="./intermediate/turtle_race3.jpg" width="300"> <img src="./intermediate/turtle_race4.jpg" width="300">
 
 ## Day 18 - Turtle & the Graphical User Interface (GUI)
 
