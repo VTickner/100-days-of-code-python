@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Intermediate](#intermediate)
+  - [Day 20 - Build the Snake Game Part 1: Animation & Coordinates](#day-20---build-the-snake-game-part-1-animation--coordinates)
   - [Day 19 - Instances, State and Higher Order Functions](#day-19---instances-state-and-higher-order-functions)
   - [Day 18 - Turtle & the Graphical User Interface (GUI)](#day-18---turtle--the-graphical-user-interface-gui)
   - [Day 17 - The Quiz Project & the Benefits of OOP](#day-17---the-quiz-project--the-benefits-of-oop)
@@ -32,6 +33,171 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
   - [Author](#author)
 
 # Intermediate
+
+## Day 20 - Build the Snake Game Part 1: Animation & Coordinates
+
+This is the first stage in building the classic Snake game using Python and the Turtle graphics module.
+
+Goals for Part 1:
+
+- Create the snake body with individual segments.
+- Animate the snake by moving its segments smoothly.
+- Control the snake's direction using the arrow keys.
+
+Two files are currently implemented.
+
+- `main.py` - Sets up the game screen, binds key controls, and runs the main game loop.
+- `snake.py` - Contains the `Snake` class responsible for creating the snake, moving it, and handling directional control.
+
+### Code:
+
+Key features implemented:
+
+- Smooth movement - each segment follows the one ahead for fluid motion.
+- Directional logic - the snake cannot instantly reverse direction (e.g. for up to down).
+- Manual screen updates - use of `tracer(0)` and update() gives full control over rendering.
+- Enhanced code clarity by introducing type annotations and comprehensive docstrings.
+- Refactored both `main.py` and `snake.py`.
+
+Solution URL:
+
+- [Day 20 - Snake Game: Part 1](./intermediate/day20_21_snake_game/)
+
+The state of the code as of the end of part 1:
+
+main.py
+
+```python
+from turtle import Screen
+from snake import Snake
+import time
+
+
+#---------- CONSTANTS ----------#
+
+SCREEN_WIDTH: int = 600
+SCREEN_HEIGHT: int = 600
+SNAKE_SPEED: float = 0.1 # Time delay in seconds
+
+
+#---------- SETUP DISPLAY AND CONTROLS ----------#
+
+def create_screen() -> Screen:
+    """Initialise and return the main game screen."""
+    screen = Screen()
+    screen.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
+    screen.bgcolor("black")
+    screen.title("My Snake Game")
+    screen.tracer(0) # Turns off automatic screen updates
+    return screen
+
+
+def bind_keys(screen:Screen, snake:Snake) -> None:
+    """Bind keyboard keys to snake movement functions"""
+    screen.listen()
+    screen.onkeypress(key="Up", fun=snake.up)
+    screen.onkeypress(key="Down", fun=snake.down)
+    screen.onkeypress(key="Left", fun=snake.left)
+    screen.onkeypress(key="Right", fun=snake.right)
+
+
+#---------- MAIN PROGRAM ----------#
+
+def main() -> None:
+    """Run the main loop for the snake game."""
+    screen = create_screen()
+    snake = Snake()
+    bind_keys(screen, snake)
+
+    game_is_on = True
+    while game_is_on:
+        screen.update()
+        time.sleep(SNAKE_SPEED) # Adds a delay to make the snake's movement appear smooth and cohesive
+        snake.move_snake()
+
+    screen.exitonclick()
+
+
+# ---------- ENTRY POINT ---------- #
+
+if __name__ == "__main__":
+    main()
+
+```
+
+snake.py
+
+```python
+from turtle import Turtle
+
+class Snake:
+    """Represents the snake in a classic Snake game. Manages creation, movement and directional control of the snake segments."""
+
+    #---------- CONSTANTS ----------#
+
+    SNAKE_COLOUR: str = "white"
+    SNAKE_SHAPE: str = "square"
+    STARTING_POSITIONS: list[tuple[int, int]] = [(0, 0), (-20, 0), (-40, 0)]
+    MOVE_DISTANCE: int = 20 # Distance each segment moves per step (size of each Turtle segment)
+    UP: int = 90
+    DOWN: int = 270
+    LEFT: int = 180
+    RIGHT: int = 0
+
+
+    #---------- INTERNAL METHODS ----------#
+
+    def __init__(self) -> None:
+        self.snake: list[Turtle] = self._create_snake()
+        self.head: Turtle = self.snake[0]
+
+
+    def _create_snake(self) -> list[Turtle]:
+        """Create snake segments at the starting positions and store them in a list."""
+        snake: list[Turtle] = []
+        for x, y in self.STARTING_POSITIONS:
+            segment = Turtle(shape=self.SNAKE_SHAPE)
+            segment.color(self.SNAKE_COLOUR)
+            segment.penup()
+            segment.goto(x=x, y=y)
+            snake.append(segment)
+        return snake
+
+
+    #---------- EXTERNAL METHODS ----------#
+
+    def move_snake(self) -> None:
+        """Move each segment to the position of the segment in front, then move the head forward."""
+        for i in range(len(self.snake) - 1, 0, -1):
+            new_x = self.snake[i - 1].xcor()
+            new_y = self.snake[i - 1].ycor()
+            self.snake[i].goto(x=new_x, y=new_y)
+        self.head.forward(self.MOVE_DISTANCE)
+
+
+    def up(self) -> None:
+        """Change direction to up unless currently moving down."""
+        if self.head.heading() != self.DOWN:
+            self.head.setheading(self.UP)
+
+
+    def down(self) -> None:
+        """Change direction to down unless currently moving up."""
+        if self.head.heading() != self.UP:
+            self.head.setheading(self.DOWN)
+
+
+    def left(self) -> None:
+        """Change direction to left unless currently moving right."""
+        if self.head.heading() != self.RIGHT:
+            self.head.setheading(self.LEFT)
+
+
+    def right(self) -> None:
+        """Change direction to right unless currently moving left."""
+        if self.head.heading() != self.LEFT:
+            self.head.setheading(self.RIGHT)
+```
 
 ## Day 19 - Instances, State and Higher Order Functions
 
