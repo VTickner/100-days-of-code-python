@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Intermediate](#intermediate)
+  - [Day 21 - Build the Snake Game Part 2: Inheritance & List Slicing](#day-21---build-the-snake-game-part-2-inheritance--list-slicing)
   - [Day 20 - Build the Snake Game Part 1: Animation & Coordinates](#day-20---build-the-snake-game-part-1-animation--coordinates)
   - [Day 19 - Instances, State and Higher Order Functions](#day-19---instances-state-and-higher-order-functions)
   - [Day 18 - Turtle & the Graphical User Interface (GUI)](#day-18---turtle--the-graphical-user-interface-gui)
@@ -34,6 +35,48 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 
 # Intermediate
 
+## Day 21 - Build the Snake Game Part 2: Inheritance & List Slicing
+
+This is the second stage in building the classic Snake game using Python and the Turtle graphics module.
+
+Goals for Part 2:
+
+- Detect when the snake eats the food.
+- Update and display the score.
+- Detect collision with the wall.
+- Detect collision with the snake's own tail.
+
+Updates and amendments have been made to the two previously created files.
+
+- `main.py` - Added in collision detection with food (increases score and snake length), wall (triggers game over) and tail (triggers game over).
+- `snake.py` - Added the `extend_snake()` method to allow growth when food is eaten.
+
+Two further files were implemented.
+
+- `food.py` - Contains the `Food` class responsible for randomly placing food on the screen, handles appearance and refresh logic after being eaten.
+- `scoreboard.py` - Contains the `Scoreboard` class responsible for keeping track of the current score and displaying the score to the screen, plus showing a game over message.
+
+### Code & Potential Improvements:
+
+Solution URL:
+
+- [Day 21 - Snake Game: Part 2](./intermediate/day20_21_snake_game/main.py)
+
+Other files:
+
+- [Snake Class](./intermediate/day20_21_snake_game/snake.py)
+- [Food Class](./intermediate/day20_21_snake_game/food.py)
+- [Scoreboard CLass](./intermediate/day20_21_snake_game/scoreboard.py)
+
+Potential improvements include:
+
+- Display instructions in graphics window (notifying user of keyboard commands).
+- Replay functionality - allow the user to restart the game.
+- High score tracking - store and display the highest score.
+- Difficulty levels - allow the user to choose a difficulty level (possibly related to speed of snake).
+
+<img src="./intermediate/day20_21_snake_game/snake_game.jpg" width="300">
+
 ## Day 20 - Build the Snake Game Part 1: Animation & Coordinates
 
 This is the first stage in building the classic Snake game using Python and the Turtle graphics module.
@@ -54,8 +97,8 @@ Two files are currently implemented.
 Key features implemented:
 
 - Smooth movement - each segment follows the one ahead for fluid motion.
-- Directional logic - the snake cannot instantly reverse direction (e.g. for up to down).
-- Manual screen updates - use of `tracer(0)` and update() gives full control over rendering.
+- Directional logic - the snake cannot instantly reverse direction (e.g. from up to down).
+- Manual screen updates - use of `tracer(0)` and `update()` gives full control over rendering.
 - Enhanced code clarity by introducing type annotations and comprehensive docstrings.
 - Refactored both `main.py` and `snake.py`.
 

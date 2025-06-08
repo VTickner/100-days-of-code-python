@@ -1,12 +1,12 @@
 from turtle import Turtle
 
 class Snake:
-    """Represents the snake in a classic Snake game. Manages creation, movement and directional control of the snake segments."""
+    """Represents the snake in a classic Snake game. Manages creation, movement and direction."""
 
     #---------- CONSTANTS ----------#
 
-    SNAKE_COLOUR: str = "white"
-    SNAKE_SHAPE: str = "square"
+    COLOUR: str = "white"
+    SHAPE: str = "square"
     STARTING_POSITIONS: list[tuple[int, int]] = [(0, 0), (-20, 0), (-40, 0)]
     MOVE_DISTANCE: int = 20 # Distance each segment moves per step (size of each Turtle segment)
     UP: int = 90
@@ -15,55 +15,65 @@ class Snake:
     RIGHT: int = 0
 
 
-    #---------- INTERNAL METHODS ----------#
+    #---------- INITIALISATION ----------#
 
     def __init__(self) -> None:
-        self.snake: list[Turtle] = self._create_snake()
-        self.head: Turtle = self.snake[0]
+        self.segments: list[Turtle] = []
+        self._create_snake()
+        self.head: Turtle = self.segments[0]
     
 
-    def _create_snake(self) -> list[Turtle]:
-        """Create snake segments at the starting positions and store them in a list."""
-        snake: list[Turtle] = []
+    #---------- PRIVATE METHODS ----------#
+
+    def _create_snake(self) -> None:
+        """Initialise the snake with starting segments."""
         for x, y in self.STARTING_POSITIONS:
-            segment = Turtle(shape=self.SNAKE_SHAPE)
-            segment.color(self.SNAKE_COLOUR)
-            segment.penup()
-            segment.goto(x=x, y=y)
-            snake.append(segment)
-        return snake
+            self._add_segment(x, y) 
 
 
-    #---------- EXTERNAL METHODS ----------#
+    def _add_segment(self, x: int, y: int) -> None:
+        """Add a new segment at the specified position."""
+        segment = Turtle(shape=self.SHAPE)
+        segment.color(self.COLOUR)
+        segment.penup()
+        segment.goto(x, y)
+        self.segments.append(segment)
+
+
+    #---------- PUBLIC METHODS ----------#
+
+    def extend_snake(self) -> None:
+        """Extend the snake by adding a new segment at the tail."""
+        last = self.segments[-1]
+        self._add_segment(last.xcor(), last.ycor())     
+
 
     def move_snake(self) -> None:
-        """Move each segment to the position of the segment in front, then move the head forward."""
-        for i in range(len(self.snake) - 1, 0, -1):
-            new_x = self.snake[i - 1].xcor()
-            new_y = self.snake[i - 1].ycor()
-            self.snake[i].goto(x=new_x, y=new_y)
+        """Move the snake forward, segment by segment."""
+        for i in range(len(self.segments) - 1, 0, -1):
+            self.segments[i].goto(self.segments[i - 1].pos())
         self.head.forward(self.MOVE_DISTANCE)
 
 
     def up(self) -> None:
-        """Change direction to up unless currently moving down."""
+        """Turn upwards unless moving down."""
         if self.head.heading() != self.DOWN:
             self.head.setheading(self.UP)   
 
 
     def down(self) -> None:
-        """Change direction to down unless currently moving up."""
+        """Turn downwards unless moving up."""
         if self.head.heading() != self.UP:
             self.head.setheading(self.DOWN)
     
 
     def left(self) -> None:
-        """Change direction to left unless currently moving right."""
+        """Turn left unless moving right."""
         if self.head.heading() != self.RIGHT:
             self.head.setheading(self.LEFT)
 
 
     def right(self) -> None:
-        """Change direction to right unless currently moving left."""
+        """Turn right unless moving left."""
         if self.head.heading() != self.LEFT:
             self.head.setheading(self.RIGHT)
