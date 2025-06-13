@@ -67,15 +67,28 @@ Other files:
 - [Snake Class](./intermediate/day20_21_snake_game/snake.py)
 - [Food Class](./intermediate/day20_21_snake_game/food.py)
 - [Scoreboard CLass](./intermediate/day20_21_snake_game/scoreboard.py)
+- [Instructions Class](./intermediate/day20_21_snake_game/instructions.py)
 
 Potential improvements include:
 
-- Display instructions in graphics window (notifying user of keyboard commands).
+- Display instructions in graphics window (notifying user of keyboard commands) - ADDED.
+  - The purpose of this was to improve the user experience by displaying clear controls and start instructions before the game begins.
+  - Instruction display added - Game instructions (including arrow key controls and a start message) are shown in the graphical window before gameplay begins.
+  - `instructions.py` - Contains the `Instructions` class which:
+    - Display formatted text to the screen.
+    - Waits for any keypress to start the game.
+    - Clears instructions once a key is pressed and initiates the game loop.
+  - Modified the `Scoreboard` class - The `_display_score()` method was renamed to `display_score()` and made public to allow the score to be manually redrawn after instructions are cleared and before the game starts.
+  - Updated `main.py` to:
+    - Integrate the `Instructions` class into the setup.
+    - Added `start_game()` functions to clear instructions, bind movement keys, display the score and start the game loop.
+    - Added `main()` to encapsulate all setup logic, and cleanly structure the program entry point.
+      Changed `screen.exitonclick()` to `screen.mainloop()` for being able to keep the the Turtle graphics window open and responsive to events (e.g. kep pressing).
 - Replay functionality - allow the user to restart the game.
 - High score tracking - store and display the highest score.
 - Difficulty levels - allow the user to choose a difficulty level (possibly related to speed of snake).
 
-<img src="./intermediate/day20_21_snake_game/snake_game.jpg" width="300">
+<img src="./intermediate/day20_21_snake_game/snake_game_1.jpg" height="300"> <img src="./intermediate/day20_21_snake_game/snake_game_2.jpg" height="300">
 
 ## Day 20 - Build the Snake Game Part 1: Animation & Coordinates
 

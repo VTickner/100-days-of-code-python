@@ -1,6 +1,7 @@
 from turtle import Screen
 from snake import Snake
 from food import Food
+from instructions import Instructions
 from scoreboard import Scoreboard
 import time
 
@@ -9,7 +10,7 @@ import time
 
 SCREEN_WIDTH: int = 600
 SCREEN_HEIGHT: int = 600
-SNAKE_SPEED: float = 0.5    # Time delay in seconds
+SNAKE_SPEED: float = 0.1    # Time delay in seconds
 FOOD_DISTANCE: int = 15     # Distance snake is away from food for it to hit it
 WALL_LIMIT: int = 280       # Boundary for collision detection 
 TAIL_COLLISION_DISTANCE: int = 10
@@ -49,7 +50,7 @@ def check_food_collision(snake: Snake, food: Food, scoreboard: Scoreboard) -> No
 def check_wall_collision(snake: Snake) -> bool:
     """Return True if the snake hits the wall."""
     x, y = snake.head.xcor(), snake.head.ycor()
-    return x > WALL_LIMIT or x < -WALL_LIMIT or y > WALL_LIMIT or y < -WALL_LIMIT
+    return abs(x) > WALL_LIMIT or abs(y) > WALL_LIMIT
 
 
 def check_tail_collision(snake: Snake) -> bool:
@@ -60,16 +61,10 @@ def check_tail_collision(snake: Snake) -> bool:
     return False
 
 
-#---------- MAIN PROGRAM ----------#
+#---------- MAIN GAME LOOP ----------#
 
-def main() -> None:
+def game_loop(screen: Screen, snake: Snake, food: Food, scoreboard: Scoreboard) -> None:
     """Run the main loop for the snake game."""
-    screen = create_screen()
-    snake = Snake()
-    bind_keys(screen, snake)
-    food = Food()
-    scoreboard = Scoreboard()
-
     game_is_on = True
     while game_is_on:
         screen.update()
@@ -82,11 +77,38 @@ def main() -> None:
             scoreboard.game_over()
             game_is_on = False
             break
-
-    screen.exitonclick()
+    
+    screen.update()
 
 
 # ---------- ENTRY POINT ---------- #
+
+def start_game(screen:Screen, snake:Snake, food:Food, scoreboard:Scoreboard, instructions:Instructions) -> None:
+    """Launch game after instructions displayed to user"""
+    instructions.clear()
+    scoreboard.display_score()
+    bind_keys(screen, snake)
+    game_loop(screen, snake, food, scoreboard)
+
+
+def main() -> None:
+    screen = create_screen()
+    snake = Snake()
+    food = Food()
+    scoreboard = Scoreboard()
+    instructions = Instructions(screen)
+    
+    instructions.show()
+    instructions.wait_for_keypress(
+        start_callback=lambda: start_game(
+            screen=screen, 
+            snake=snake, 
+            food=food, 
+            scoreboard=scoreboard, 
+            instructions=instructions))
+    
+    screen.mainloop()
+
 
 if __name__ == "__main__":
     main()

@@ -21,23 +21,20 @@ class Scoreboard(Turtle):
         self.penup()
         self.color(self.COLOUR) # Ensures text is visible on black background
         self.goto(x=self.SCORE_X, y=self.SCORE_Y)
-        self._display_score()
-    
-
-    #---------- PRIVATE METHOD ----------#
-
-    def _display_score(self) -> None:
-        """Display the current score."""
-        self.write(arg=f"Score: {self.score}", align=self.ALIGNMENT, font=self.FONT)
     
 
     #---------- PUBLIC METHODS ----------#
+
+    def display_score(self) -> None:
+        """Display the current score."""
+        self.write(arg=f"Score: {self.score}", align=self.ALIGNMENT, font=self.FONT)
+
 
     def increase_score(self) -> None:
         """Increase score by 1 and update display."""
         self.score += 1
         self.clear()
-        self._display_score()
+        self.display_score()
     
 
     def game_over(self) -> None:
