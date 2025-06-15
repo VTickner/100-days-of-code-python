@@ -64,7 +64,7 @@ def check_tail_collision(snake: Snake) -> bool:
 #---------- MAIN GAME LOOP ----------#
 
 def game_loop(screen: Screen, snake: Snake, food: Food, scoreboard: Scoreboard) -> None:
-    """Run the main loop for the snake game."""
+    """Run the main loop for the snake game. Return True if the user wants to replay."""
     game_is_on = True
     while game_is_on:
         screen.update()
@@ -76,36 +76,47 @@ def game_loop(screen: Screen, snake: Snake, food: Food, scoreboard: Scoreboard) 
         if check_wall_collision(snake) or check_tail_collision(snake):
             scoreboard.game_over()
             game_is_on = False
-            break
     
     screen.update()
 
+    return screen.textinput("Play again?", "Do you want to play again? (yes/no)")
 
 # ---------- ENTRY POINT ---------- #
 
-def start_game(screen:Screen, snake:Snake, food:Food, scoreboard:Scoreboard, instructions:Instructions) -> None:
-    """Launch game after instructions displayed to user"""
-    instructions.clear()
-    scoreboard.display_score()
-    bind_keys(screen, snake)
-    game_loop(screen, snake, food, scoreboard)
+def start_game(screen:Screen) -> None:
+    """Launch and manage the full game flow including replay loop."""
+    while True:
+        screen.clear() # Fully reset screen from last game
+        screen.bgcolor("black")
+        screen.title("My Snake Game")
+        screen.tracer(0)
+
+        snake = Snake()
+        food = Food()
+        scoreboard = Scoreboard()
+
+        scoreboard.display_score()
+        bind_keys(screen, snake)
+
+        play_again = game_loop(screen, snake, food, scoreboard)
+        if not play_again or play_again.strip().lower() not in ["yes","y"]:
+            break
+
+    screen.bye() # Close the Turtle window
+
 
 
 def main() -> None:
     screen = create_screen()
-    snake = Snake()
-    food = Food()
-    scoreboard = Scoreboard()
     instructions = Instructions(screen)
     
     instructions.show()
     instructions.wait_for_keypress(
-        start_callback=lambda: start_game(
-            screen=screen, 
-            snake=snake, 
-            food=food, 
-            scoreboard=scoreboard, 
-            instructions=instructions))
+        start_callback=lambda: (
+            instructions.clear(),
+            start_game(screen=screen)
+        )
+    )
     
     screen.mainloop()
 

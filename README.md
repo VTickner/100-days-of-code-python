@@ -84,7 +84,12 @@ Potential improvements include:
     - Added `start_game()` functions to clear instructions, bind movement keys, display the score and start the game loop.
     - Added `main()` to encapsulate all setup logic, and cleanly structure the program entry point.
       Changed `screen.exitonclick()` to `screen.mainloop()` for being able to keep the the Turtle graphics window open and responsive to events (e.g. kep pressing).
-- Replay functionality - allow the user to restart the game.
+- Replay functionality - allow the user to restart the game - ADDED.
+  - After the snake hits the wall or itself, the user is prompted with a dialog asking if they want to play again. If they enter `yes` or `y`, a new game begins. Otherwise, the Turtle window closes. Key changes made:
+    - Replay Prompt: After the game ends, a `screen.textinput()` asks: "Do you want to play again? (yes/no)". If "yes" or "y", the game restarts.
+    - Screen Reset: `screen.clear()` and screen properties are reset between games.
+    - Looped Gameplay: `start_game()` now loops until user declines to play again.
+    - Input Handling: Game only restarts if the input is exactly "yes" or "y" (case-insensitive).
 - High score tracking - store and display the highest score.
 - Difficulty levels - allow the user to choose a difficulty level (possibly related to speed of snake).
 
