@@ -90,7 +90,14 @@ Potential improvements include:
     - Screen Reset: `screen.clear()` and screen properties are reset between games.
     - Looped Gameplay: `start_game()` now loops until user declines to play again.
     - Input Handling: Game only restarts if the input is exactly "yes" or "y" (case-insensitive).
-- High score tracking - store and display the highest score.
+- High score tracking - store and display the highest score- ADDED.
+  - Added a persistent high score functionality using a `high_score.txt` file/
+  - `Scoreboard` now displays the current high score alongside the current score.
+  - High score updates automatically if the player beats the high score.
+  - `Scoreboard` class updated to:
+    - Load the high score from file (high_score.txt) on initialisation.
+    - Save a new high score when the game ends.
+    - High score file is created if it doesn't exist, with a default of 0.
 - Difficulty levels - allow the user to choose a difficulty level (possibly related to speed of snake).
 
 <img src="./intermediate/day20_21_snake_game/snake_game_1.jpg" height="300"> <img src="./intermediate/day20_21_snake_game/snake_game_2.jpg" height="300">

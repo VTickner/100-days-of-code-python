@@ -78,6 +78,7 @@ def game_loop(screen: Screen, snake: Snake, food: Food, scoreboard: Scoreboard) 
             game_is_on = False
     
     screen.update()
+    scoreboard.reset()
 
     return screen.textinput("Play again?", "Do you want to play again? (yes/no)")
 
