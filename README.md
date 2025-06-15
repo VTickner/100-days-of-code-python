@@ -68,6 +68,7 @@ Other files:
 - [Food Class](./intermediate/day20_21_snake_game/food.py)
 - [Scoreboard CLass](./intermediate/day20_21_snake_game/scoreboard.py)
 - [Instructions Class](./intermediate/day20_21_snake_game/instructions.py)
+- [High Score](./intermediate/day20_21_snake_game/high_score.txt)
 
 Potential improvements include:
 
@@ -101,6 +102,7 @@ Potential improvements include:
 - Difficulty levels - allow the user to choose a difficulty level (possibly related to speed of snake).
 
 <img src="./intermediate/day20_21_snake_game/snake_game_1.jpg" height="300"> <img src="./intermediate/day20_21_snake_game/snake_game_2.jpg" height="300">
+<img src="./intermediate/day20_21_snake_game/snake_game_3.jpg" height="300">
 
 ## Day 20 - Build the Snake Game Part 1: Animation & Coordinates
 
