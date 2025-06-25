@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Intermediate](#intermediate)
+  - [Day 22 - Build Pong: The Famous Arcade Game](#day-22---build-pong-the-famous-arcade-game)
   - [Day 21 - Build the Snake Game Part 2: Inheritance & List Slicing](#day-21---build-the-snake-game-part-2-inheritance--list-slicing)
   - [Day 20 - Build the Snake Game Part 1: Animation & Coordinates](#day-20---build-the-snake-game-part-1-animation--coordinates)
   - [Day 19 - Instances, State and Higher Order Functions](#day-19---instances-state-and-higher-order-functions)
@@ -34,6 +35,63 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
   - [Author](#author)
 
 # Intermediate
+
+## Day 22 - Build Pong: The Famous Arcade Game
+
+This project is part of the 100 Days of Code: Python course. Today’s goal is to recreate the classic Pong game using the Turtle graphics module. The project focuses on breaking the game down into manageable components using object-oriented programming.
+
+### ✅ What I’ve Done So Far
+
+- **Created the screen**
+  - Set up an 800x600 black screen with `tracer(0)` for manual control of updates.
+- **Created the paddle**
+  - Built a `Paddle` class using inheritance from `Turtle`.
+  - Used keyboard bindings to move the paddle up and down.
+- **Created a second paddle**
+  - Reused the `Paddle` class to instantiate a second paddle on the opposite side.
+  - Mapped different key bindings (`w`/`s` for left paddle, `Up`/`Down` for right paddle).
+
+### 💡 Key Learnings
+
+#### Using `tracer(0)` and `update()`:
+
+Turning off automatic animation allows finer control over screen updates, which is especially useful when managing multiple moving elements.
+
+```python
+screen.tracer(0)
+...
+while True:
+    screen.update()
+```
+
+#### Handling multiple key bindings:
+
+Passing key bindings into a function avoids duplicated logic and keeps the code clean:
+
+```python
+def bind_keys(screen: Screen, paddle: Paddle, key_up: str, key_down: str) -> None:
+    screen.listen()
+    screen.onkeypress(key=key_up, fun=paddle.move_up)
+    screen.onkeypress(key=key_down, fun=paddle.move_down)
+```
+
+### 🔧 Next Steps
+
+- Create the `Ball` class and implement basic movement.
+- Add wall collision and bounce logic.
+- Detect paddle collisions and deflections.
+- Detect when a paddle misses the ball and track scores.
+- Create a `Scoreboard` class to display and update the score.
+
+### Code & Potential Improvements:
+
+Solution URL:
+
+- [Day 22 - Pong Game](./intermediate/day22_pong_game/main.py)
+
+Other files:
+
+- [Paddle Class](./intermediate/day22_pong_game/paddle.py)
 
 ## Day 21 - Build the Snake Game Part 2: Inheritance & List Slicing
 
