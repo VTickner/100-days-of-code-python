@@ -40,7 +40,7 @@ def start_game(screen:Screen) -> None:
     """Launch and manage the full game flow including replay loop."""
     right_paddle = Paddle(x=PADDLE_X, y=PADDLE_Y)
     left_paddle = Paddle(x=-PADDLE_X, y=PADDLE_Y)
-    
+
     bind_keys(screen, right_paddle, key_up="Up", key_down="Down")
     bind_keys(screen, left_paddle, key_up="w", key_down="s")
 
@@ -50,6 +50,14 @@ def start_game(screen:Screen) -> None:
     while True:
         time.sleep(BALL_SPEED)
         ball.move()
+        
+        # Detect collision with either paddle
+        ball.paddle_collision(paddle=right_paddle, x_threshold=320)
+        ball.paddle_collision(paddle=left_paddle, x_threshold=-320)
+
+        # Detect paddle missed
+        ball.reset_if_missed()
+
         screen.update()
 
 

@@ -54,6 +54,10 @@ This project is part of the 100 Days of Code: Python course. Today’s goal is t
   - Built a `Ball` class using inheritance from `Turtle`.
   - Implemented basic directional movement using `forward()` and `setheading()`.
   - Added collision detection with the top and bottom walls, and bounce logic to reverse direction.
+- **Detect paddle collisions**
+  - Ball reverses direction when close enough to a paddle and within a valid x-range.
+- **Detect when a paddle misses**
+  - If the ball goes past the x-boundaries of the game window, it resets to the centre and reverses direction.
 
 ### 💡 Key Learnings
 
@@ -92,10 +96,27 @@ self.forward(10)
 
 By keeping bounce logic `_wall_bounce()` inside the `Ball` class, the code stays modular and easier to maintain. It separates responsibilities clearly between objects in the game.
 
+#### Detecting paddle collisions:
+
+Used a combination of `distance()` and x-position checks to determine if the ball should bounce.
+
+```python
+if self.distance(paddle) < self.HIT_RANGE and abs(self.xcor()) > abs(x_threshold):
+    self._bounce_x()
+```
+
+#### Resetting after missed paddle:
+
+Ball resets to the centre and reverses direction when it goes beyond the x-boundaries.
+
+```python
+if abs(self.xcor()) > self.SCREEN_X_LIMIT:
+    self.goto(x=self.START_POS_X, y=self.START_POS_Y)
+    self._bounce_x()
+```
+
 ### 🔧 Next Steps
 
-- Detect paddle collisions and deflections.
-- Detect when a paddle misses the ball and track scores.
 - Create a `Scoreboard` class to display and update the score.
 
 ### Code & Potential Improvements:
