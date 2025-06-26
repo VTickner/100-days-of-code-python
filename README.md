@@ -50,6 +50,10 @@ This project is part of the 100 Days of Code: Python course. Today’s goal is t
 - **Created a second paddle**
   - Reused the `Paddle` class to instantiate a second paddle on the opposite side.
   - Mapped different key bindings (`w`/`s` for left paddle, `Up`/`Down` for right paddle).
+- **Created the ball**
+  - Built a `Ball` class using inheritance from `Turtle`.
+  - Implemented basic directional movement using `forward()` and `setheading()`.
+  - Added collision detection with the top and bottom walls, and bounce logic to reverse direction.
 
 ### 💡 Key Learnings
 
@@ -75,10 +79,21 @@ def bind_keys(screen: Screen, paddle: Paddle, key_up: str, key_down: str) -> Non
     screen.onkeypress(key=key_down, fun=paddle.move_down)
 ```
 
+#### Controlling movement using `setheading()` and `forward()`:
+
+Instead of manually calculating `x` and `y` positions, using `setheading(angle)` and `forward(distance)` allows for more natural and flexible movement in any direction.
+
+```python
+self.setheading(45)
+self.forward(10)
+```
+
+#### Encapsulating behaviour in class methods:
+
+By keeping bounce logic `_wall_bounce()` inside the `Ball` class, the code stays modular and easier to maintain. It separates responsibilities clearly between objects in the game.
+
 ### 🔧 Next Steps
 
-- Create the `Ball` class and implement basic movement.
-- Add wall collision and bounce logic.
 - Detect paddle collisions and deflections.
 - Detect when a paddle misses the ball and track scores.
 - Create a `Scoreboard` class to display and update the score.
@@ -92,6 +107,7 @@ Solution URL:
 Other files:
 
 - [Paddle Class](./intermediate/day22_pong_game/paddle.py)
+- [Ball Class](./intermediate/day22_pong_game/ball.py)
 
 ## Day 21 - Build the Snake Game Part 2: Inheritance & List Slicing
 
