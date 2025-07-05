@@ -1,6 +1,7 @@
 from turtle import Screen
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 import time
 
 #---------- CONSTANTS ----------#
@@ -9,7 +10,8 @@ SCREEN_WIDTH: int = 800
 SCREEN_HEIGHT: int = 600
 PADDLE_X: int = 350
 PADDLE_Y: int = 0
-BALL_SPEED: float = 0.1    # Time delay in seconds
+SCORE_X_POS: int = -100
+SCORE_Y_POS: int = 200
 
 
 #---------- SETUP DISPLAY AND CONTROLS ----------#
@@ -31,9 +33,6 @@ def bind_keys(screen: Screen, paddle: Paddle, key_up: str, key_down: str) -> Non
     screen.onkeypress(key=key_down, fun=paddle.move_down)
 
 
-#---------- GAME LOGIC ----------#
-
-
 #---------- MAIN GAME LOOP ----------#
 
 def start_game(screen:Screen) -> None:
@@ -41,14 +40,16 @@ def start_game(screen:Screen) -> None:
     right_paddle = Paddle(x=PADDLE_X, y=PADDLE_Y)
     left_paddle = Paddle(x=-PADDLE_X, y=PADDLE_Y)
 
-    bind_keys(screen, right_paddle, key_up="Up", key_down="Down")
-    bind_keys(screen, left_paddle, key_up="w", key_down="s")
+    bind_keys(screen=screen, paddle=right_paddle, key_up="Up", key_down="Down")
+    bind_keys(screen=screen, paddle=left_paddle, key_up="w", key_down="s")
 
     ball = Ball()
+    scoreboard = Scoreboard(x=SCORE_X_POS, y=SCORE_Y_POS)
+
     screen.update()
 
     while True:
-        time.sleep(BALL_SPEED)
+        time.sleep(ball.speed)
         ball.move()
         
         # Detect collision with either paddle
@@ -56,7 +57,9 @@ def start_game(screen:Screen) -> None:
         ball.paddle_collision(paddle=left_paddle, x_threshold=-320)
 
         # Detect paddle missed
-        ball.reset_if_missed()
+        missed_paddle = ball.reset_if_missed()
+        if missed_paddle:
+            scoreboard.point(paddle_missed=missed_paddle)
 
         screen.update()
 
@@ -64,6 +67,7 @@ def start_game(screen:Screen) -> None:
 # ---------- ENTRY POINT ---------- #
 
 def main() -> None:
+    """Entry point for the game. Sets up the screen and starts game logic."""
     screen = create_screen()
     start_game(screen)
     screen.mainloop()

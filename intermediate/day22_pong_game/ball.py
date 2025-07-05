@@ -13,6 +13,7 @@ class Ball(Turtle):
     START_HEADING: int = 45
     START_POS_X: int = 9
     START_POS_Y: int = 0
+    START_SPEED: float = 0.1
     MOVE_DISTANCE: int = 10
     COLLISION_Y_LIMIT: int = 280
     SCREEN_X_LIMIT: int = 380
@@ -22,6 +23,7 @@ class Ball(Turtle):
     #---------- INITIALISATION ----------#
 
     def __init__(self) -> None:
+        """Initialise ball position and heading."""
         super().__init__()
         self.shape(self.SHAPE)
         self.penup()
@@ -29,6 +31,7 @@ class Ball(Turtle):
         self.color(self.COLOUR)
         self.goto(x=self.START_POS_X, y=self.START_POS_Y)
         self.setheading(self.START_HEADING)
+        self.speed = self.START_SPEED
 
 
     #---------- PRIVATE METHODS ----------#
@@ -42,6 +45,19 @@ class Ball(Turtle):
         """Reverse vertical direction if hit top or bottom wall."""
         if abs(self.ycor()) > self.COLLISION_Y_LIMIT:
             self.setheading(-self.heading())
+    
+
+    def _increase_speed(self) -> None:
+        """Decrease the sleep time to speed up the ball, with a lower limit."""
+        self.speed = max(self.speed * 0.9, 0.0001)
+
+
+    def _reset_position(self, direction: str) -> str:
+        """Reset ball and speed after a miss."""
+        self.goto(self.START_POS_X, self.START_POS_Y)
+        self.speed = self.START_SPEED
+        self._bounce_x()
+        return direction
 
 
     #---------- PUBLIC METHODS ----------#
@@ -56,10 +72,13 @@ class Ball(Turtle):
         """Bounce off paddle if within distance and past x-threshold."""
         if self.distance(paddle) < self.HIT_RANGE and abs(self.xcor()) > abs(x_threshold):
             self._bounce_x()
+            self._increase_speed()
 
 
-    def reset_if_missed(self) -> None:
-        """Reset ball to centre and reverse horizontal direction if ball goes past left or right edge of screen."""
-        if abs(self.xcor()) > self.SCREEN_X_LIMIT:
-            self.goto(x=self.START_POS_X, y=self.START_POS_Y)
-            self._bounce_x()
+    def reset_if_missed(self) -> str | None:
+        """Return 'left', 'right' if paddle missed, else 'None'."""
+        if self.xcor() > self.SCREEN_X_LIMIT:
+            return self._reset_position(direction="right")
+        elif self.xcor() < -self.SCREEN_X_LIMIT:
+            return self._reset_position(direction="left")
+        return None

@@ -15,6 +15,7 @@ class Paddle(Turtle):
     #---------- INITIALISATION ----------#
 
     def __init__(self, x: int, y: int) -> None:
+        """Create paddle at specified position."""
         super().__init__()
         self.shape(self.SHAPE)
         self.penup()
