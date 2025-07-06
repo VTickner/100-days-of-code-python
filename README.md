@@ -40,28 +40,33 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 
 This project is part of the 100 Days of Code: Python course. Today’s goal is to recreate the classic Pong game using the Turtle graphics module. The project focuses on breaking the game down into manageable components using object-oriented programming.
 
-### ✅ What I’ve Done So Far
+### ✅ What This Game Does
 
-- **Created the screen**
-  - Set up an 800x600 black screen with `tracer(0)` for manual control of updates.
-- **Created the paddle**
-  - Built a `Paddle` class using inheritance from `Turtle`.
-  - Used keyboard bindings to move the paddle up and down.
-- **Created a second paddle**
-  - Reused the `Paddle` class to instantiate a second paddle on the opposite side.
-  - Mapped different key bindings (`w`/`s` for left paddle, `Up`/`Down` for right paddle).
-- **Created the ball**
-  - Built a `Ball` class using inheritance from `Turtle`.
-  - Implemented basic directional movement using `forward()` and `setheading()`.
-  - Added collision detection with the top and bottom walls, and bounce logic to reverse direction.
-- **Detect paddle collisions**
-  - Ball reverses direction when close enough to a paddle and within a valid x-range.
-- **Detect when a paddle misses**
-  - If the ball goes past the x-boundaries of the game window, it resets to the centre and reverses direction.
+- **Game Setup and Controls**
+  - 800x600 black screen.
+  - Animation updates controlled manually with `tracer(0)` and `update()`.
+  - Right paddle controlled by Up/Down arrow keys.
+  - Left paddle controlled by W/S keys.
+  - Key bindings abstracted into a reusable function for clarity.
+- **Paddle Functionality**
+  - Built a reuseable `Paddle` class (inherits from `Turtle`).
+  - Paddle can move up and down within the screen using key presses.
+  - Two paddles created (left and right), positioned symmetrically.
+- **Ball Functionality**
+  - Created a `Ball` class using (inherits from `Turtle`).
+  - Ball starts in the centre and moves at an angle.
+  - Bounces off the top and bottom walls.
+  - Bounces off paddles and increases speed with each paddle hit.
+  - Resets to starting position if a paddle misses, and resets speed.
+- **Scoreboard Functionality**
+  - Created a `Scoreboard` class (inherits from `Turtle`).
+  - Displays the current scores for each player.
+  - Increases the opponents score when a player misses the ball.
+  - Updates and redraws the score every time a point is scored.
 
 ### 💡 Key Learnings
 
-#### Using `tracer(0)` and `update()`:
+#### Controlling Game Updates with `tracer(0)` and `update()`:
 
 Turning off automatic animation allows finer control over screen updates, which is especially useful when managing multiple moving elements.
 
@@ -72,52 +77,52 @@ while True:
     screen.update()
 ```
 
-#### Handling multiple key bindings:
+#### Reuseable Key Binding Function:
 
-Passing key bindings into a function avoids duplicated logic and keeps the code clean:
+Passing key bindings into a function avoids duplicated logic when binding controls for both paddles:
 
 ```python
 def bind_keys(screen: Screen, paddle: Paddle, key_up: str, key_down: str) -> None:
-    screen.listen()
     screen.onkeypress(key=key_up, fun=paddle.move_up)
     screen.onkeypress(key=key_down, fun=paddle.move_down)
 ```
 
-#### Controlling movement using `setheading()` and `forward()`:
+#### Controlling Movement and Direction using `setheading()` and `forward()`:
 
-Instead of manually calculating `x` and `y` positions, using `setheading(angle)` and `forward(distance)` allows for more natural and flexible movement in any direction.
+Rather than manually adjusting `x` and `y` coordinates, the `Ball` class uses `setheading(angle)` and `forward(distance)` to control direction and movement. This approach simplifies the bouncing and reset logic, since reversing direction is as simple as modifying the heading angle.
 
 ```python
-self.setheading(45)
-self.forward(10)
+self.setheading(180 - self.heading())  # Reverse x-direction
+self.forward(self.MOVE_DISTANCE)       # Move the ball forward in its current heading
 ```
 
-#### Encapsulating behaviour in class methods:
+#### Encapsulating Behaviour in Class Methods: Separation of Concerns
 
-By keeping bounce logic `_wall_bounce()` inside the `Ball` class, the code stays modular and easier to maintain. It separates responsibilities clearly between objects in the game.
+- The `Scoreboard` class only handles tracking and displaying of scores. It doesn't detect when the ball misses - that responsibility stays with the Ball` class.
+- The `Ball` class manages its own behaviour, such as bouncing off the top and bottom walls and handling paddle collisions. This keeps collision and movement logic encapsulated within the class that owns it.
+- Private methods `_update_scoreboard()` (`Scoreboard` class) and `_bounce_x()`, `_bounce_y()`, `_increase_speed()` and `_reset_position()` (`Ball` class) keep the code modular and readable. They also hide internal logic from other parts of the program, reducing the chance of accidental changes and making it clear which parts of the class are intended for external use versus internal operation.
+- Each class contains only the functionality relevant to itself, following the separation of concerns principle.
 
-#### Detecting paddle collisions:
+#### Detecting Paddle Collisions:
 
 Used a combination of `distance()` and x-position checks to determine if the ball should bounce.
 
 ```python
 if self.distance(paddle) < self.HIT_RANGE and abs(self.xcor()) > abs(x_threshold):
     self._bounce_x()
+    self._increase_speed()
 ```
 
-#### Resetting after missed paddle:
+#### Ball Speed Increases on Paddle Hit:
 
-Ball resets to the centre and reverses direction when it goes beyond the x-boundaries.
+- The `Ball` class includes an `_increase_speed()` method to make the game progressively harder as players rally the ball back and forth.
+- Speed is reduced (i.e. the ball moves faster) by multiplying the sleep delay by 0.9 after each paddle hit.
+- A lower limit prevents the ball from becoming too fast.
 
 ```python
-if abs(self.xcor()) > self.SCREEN_X_LIMIT:
-    self.goto(x=self.START_POS_X, y=self.START_POS_Y)
-    self._bounce_x()
+def _increase_speed(self) -> None:
+    self.speed = max(self.speed * 0.9, 0.0001)
 ```
-
-### 🔧 Next Steps
-
-- Create a `Scoreboard` class to display and update the score.
 
 ### Code & Potential Improvements:
 
@@ -129,6 +134,13 @@ Other files:
 
 - [Paddle Class](./intermediate/day22_pong_game/paddle.py)
 - [Ball Class](./intermediate/day22_pong_game/ball.py)
+- [Scoreboard Claas](./intermediate/day22_pong_game/scoreboard.py)
+
+Potential improvements include:
+
+- Add a start and game over screen.
+- Add sound effects on collisions and score events.
+- Limit paddle movement to stay within boundaries of the screen - ADDED.
 
 ## Day 21 - Build the Snake Game Part 2: Inheritance & List Slicing
 

@@ -27,12 +27,14 @@ class Paddle(Turtle):
     #---------- PUBLIC METHODS ----------#
 
     def move_up(self) -> None:
-        """Move the paddle up."""
+        """Move the paddle up, staying within the screen limits."""
         new_y = self.ycor() + self.MOVE_DISTANCE
-        self.goto(self.xcor(), new_y)
+        if new_y < 250: # Upper screen limit
+            self.goto(self.xcor(), new_y)
 
     
     def move_down(self) -> None:
-        """Move the paddle down."""
+        """Move the paddle down, staying within the screen limits."""
         new_y = self.ycor() - self.MOVE_DISTANCE
-        self.goto(self.xcor(), new_y)
+        if new_y > -250: # Lower screen limit
+            self.goto(self.xcor(), new_y)
