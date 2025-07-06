@@ -142,6 +142,8 @@ Potential improvements include:
 - Add sound effects on collisions and score events.
 - Limit paddle movement to stay within boundaries of the screen - ADDED.
 
+<img src="./intermediate/pong.jpg" width="500">
+
 ## Day 21 - Build the Snake Game Part 2: Inheritance & List Slicing
 
 This is the second stage in building the classic Snake game using Python and the Turtle graphics module.
