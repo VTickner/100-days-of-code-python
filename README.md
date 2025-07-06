@@ -7,6 +7,7 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
 ## Table of Contents
 
 - [Intermediate](#intermediate)
+  - [Day 23 - The Turtle Crossing Capstone Project](#day-23---the-turtle-crossing-capstone-project)
   - [Day 22 - Build Pong: The Famous Arcade Game](#day-22---build-pong-the-famous-arcade-game)
   - [Day 21 - Build the Snake Game Part 2: Inheritance & List Slicing](#day-21---build-the-snake-game-part-2-inheritance--list-slicing)
   - [Day 20 - Build the Snake Game Part 1: Animation & Coordinates](#day-20---build-the-snake-game-part-1-animation--coordinates)
@@ -35,6 +36,63 @@ These projects were created as part of [Dr. Angela Yu's "100 Days of Code: The C
   - [Author](#author)
 
 # Intermediate
+
+## Day 23 - The Turtle Crossing Capstone Project
+
+This project is part of the 100 Days of Code: Python course. Today’s goal is to build a turtle crossing game using Python's turtle module. The player controls a turtle character that must cross the screen from bottom to top, avoiding cars that move horizontally across the screen. Each time the player successfully reaches the finish line, the level increases and the cars move faster, making the game progressively more challenging.
+
+### 🔧 Break Down The Problem
+
+- **Turtle Player**
+  - Create a turtle player that starts at the bottom of the screen.
+  - Listen for the "Up" keypress to move the turtle north.
+- **Cars**
+  - Create cars that are 20px high by 40px wide that are randomly generated along the y-axis and move to the left edge of the screen.
+  - No cars should be generated in the top and bottom 50px of the screen (think of it as a safe zone for our little turtle).
+  - Hint: Generate a new car only every 6th time the game loop runs.
+- **Turtle Collides with Car**
+  - Detect when the turtle player collides with a car.
+  - Stop the game if this happens.
+  - When the turtle hits a car, GAME OVER should be displayed in the centre.
+- **Turtle Completes Crossing**
+  - Detect when the turtle player has reached the top edge of the screen (i.e. reached the FINISH_LINE_Y).
+  - When this happens, return the turtle to the starting position and increase the speed of the cars.
+  - Hint: Think about creating an attribute and using the MOVE_INCREMENT to increase the car speed.
+- **Scoreboard**
+  - Create a scoreboard that keeps track of which level the user is on.
+  - Every time the turtle player does a successful crossing, the level should increase.
+
+### ✅ What This Game Does
+
+- **Game Setup and Controls**
+  - 600x600 screen.
+  - Animation updates controlled manually with `tracer(0)` and `update()`.
+  - Turtle controlled by Up arrow key.
+- **Turtle Functionality**
+  - Created a `Player` class (inherits from `Turtle`).
+  - Turtle player can move up within the screen using key presses until reaches the finish line (y = 280).
+
+### 💡 Key Learnings
+
+#### TODO
+
+TODO
+
+### Code & Potential Improvements:
+
+Solution URL:
+
+- [Day 23 - The Turtle Crossing Game](./intermediate/day23_turtle_crossing_game/main.py)
+
+Other files:
+
+- [Player Class](./intermediate/day23_turtle_crossing_game/player.py)
+- [CarManager Class](./intermediate/day23_turtle_crossing_game/car_manager.py)
+- [Scoreboard Class](./intermediate/day23_turtle_crossing_game/scoreboard.py)
+
+Potential improvements include:
+
+- TODO
 
 ## Day 22 - Build Pong: The Famous Arcade Game
 
@@ -210,8 +268,8 @@ Potential improvements include:
     - High score file is created if it doesn't exist, with a default of 0.
 - Difficulty levels - allow the user to choose a difficulty level (possibly related to speed of snake).
 
-<img src="./intermediate/day20_21_snake_game/snake_game_1.jpg" height="300"> <img src="./intermediate/day20_21_snake_game/snake_game_2.jpg" height="300">
-<img src="./intermediate/day20_21_snake_game/snake_game_3.jpg" height="300">
+<img src="./intermediate/day20_21_snake_game/snake_game_1.jpg" width="300"> <img src="./intermediate/day20_21_snake_game/snake_game_2.jpg" width="300">
+<img src="./intermediate/day20_21_snake_game/snake_game_3.jpg" width="300">
 
 ## Day 20 - Build the Snake Game Part 1: Animation & Coordinates
 
