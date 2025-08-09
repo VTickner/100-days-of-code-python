@@ -22,13 +22,12 @@ class Player(Turtle):
         self.penup()
         self.color(self.COLOUR)
         self.goto(self.STARTING_POSITION)
-        self.setheading(90) # Point upwards
+        self.setheading(90) # Face upwards
     
 
     #---------- PUBLIC METHODS ----------#
 
     def move(self) -> None:
         """Move the turtle upwards, stopping at the finish line."""
-        new_y = self.ycor() + self.MOVE_DISTANCE
-        if new_y < self.FINISH_LINE_Y: # Stop at finish line
-            self.goto(self.xcor(), new_y)
+        if self.ycor() + self.MOVE_DISTANCE < self.FINISH_LINE_Y:
+            self.forward(self.MOVE_DISTANCE)

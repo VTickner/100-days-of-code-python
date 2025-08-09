@@ -67,16 +67,25 @@ This project is part of the 100 Days of Code: Python course. Today’s goal is t
 - **Game Setup and Controls**
   - 600x600 screen.
   - Animation updates controlled manually with `tracer(0)` and `update()`.
-  - Turtle controlled by Up arrow key.
+  - Turtle controlled by `Up` arrow key.
 - **Turtle Functionality**
   - Created a `Player` class (inherits from `Turtle`).
-  - Turtle player can move up within the screen using key presses until reaches the finish line (y = 280).
+  - Turtle player can move up within the screen using key presses until they reach the finish line (y = 280).
+- **Car Manager Functionality**
+  - Created a `CarManager` class
+  - Starts off with an empty list of cars and a basic car speed.
 
 ### 💡 Key Learnings
 
-#### TODO
+#### Unpacking Tuples
 
-TODO
+`*` unpacks a tuple. In this instance, it unpacks the y-range that is used for where a car can be generated.
+
+```python
+Y_RANGE: tuple[int, int] = [-240, 240]
+...
+new_car.goto(self.STARTING_X, random.randint(*self.Y_RANGE))
+```
 
 ### Code & Potential Improvements:
 
