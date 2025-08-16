@@ -24,6 +24,16 @@ def create_screen() -> Screen:
     return screen
 
 
+#---------- GAME LOGIC ----------#
+
+def check_car_collision(car_manager: CarManager, player: Player) -> bool:
+    """Return True if a car collides with the player."""
+    for car in car_manager.cars:
+        if car.distance(player) < 20:
+            return True
+    return False
+
+
 #---------- MAIN GAME LOOP ----------#
 
 def start_game(screen:Screen) -> None:
@@ -31,22 +41,24 @@ def start_game(screen:Screen) -> None:
     player = Player()
     car_manager = CarManager()
 
-    screen.onkeypress(key="Up", fun=player.move)
+    screen.onkeypress(fun=player.move, key="Up")
 
-    i = 0
+    loop_count = 0
     game_is_on = True
 
     while game_is_on:
         time.sleep(FRAME_DELAY)
         screen.update()
 
-        i += 1
-        if i % CAR_FREQUENCY == 0:
+        loop_count += 1
+        if loop_count % CAR_FREQUENCY == 0:
             car_manager.create_car()
         
         car_manager.move_cars()
 
-        # TODO: Add collision detection
+        if check_car_collision(car_manager,player):
+            game_is_on = False
+
         # TODO: Add level advancement
         # TODO: Add game over handling and replay option
 
@@ -54,7 +66,7 @@ def start_game(screen:Screen) -> None:
 # ---------- ENTRY POINT ---------- #
 
 def main() -> None:
-    """Entry point for the game. Sets up the screen and starts game."""
+    """Entry point for the game. Sets up the screen and starts the game."""
     screen = create_screen()
     start_game(screen)
     screen.mainloop()
